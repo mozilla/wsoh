@@ -84,7 +84,7 @@ Transportation:
 Mozilla will provide shuttles in the evening of July 22nd and the morning of July 23rd from Mountain View's Caltrain Station to CHM (Computer History Museum).
 
 Please add your name to the survey if you'd like to request transportation:
-http://www.surveymonkey.com/s/LGHRWTP/ (the shuttle will have signs with Mozilla and WSOH) 
+http://www.surveymonkey.com/s/LGHRWTP (the shuttle will have signs with Mozilla and WSOH) 
 
 Caltrain's schedule: http://www.caltrain.com/schedules/weekdaytimetable.html
 
