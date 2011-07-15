@@ -8,7 +8,7 @@ Getting Started:
   (make sure you save each time and be careful not overwriting others edits)
 - No more than 4 members per team ; individual contributors welcome too.
 - If you have a project and need more members on your team, please indicate the type of technical skills set you're looking for. Please add your contact info so students can reach you.
-- You can also use the Facebook group page to find a team or team members (in case you already have your own project)
+- You can also use the Facebook group page to find a team or team members (in case you already have your own project)<br>
 Facebook event page: http://on.fb.me/mozwsoh
 - For those of you who don't have a project/idea, nor a team, please find one and add yourself on the Etherpad
 - For your official entry, fork this project and commit your code to the fork. We'll be able to see the list of submissions via the Network Graph.
