@@ -41,7 +41,7 @@ For WSOH we chose to focus on projects and challenges that advance the Web for e
 
 List of Companies Sending Engineering Advisors (as of 7/15):
 ------------------------------------------------------------
-Mozilla, Github, Google, Dropbox, Yahoo!, Scribd, Meebo, 10gen/MongoDB, Flotype (now.js) 
+Mozilla, Github, Google, Dropbox, Yahoo!, Scribd, Meebo, 10gen/MongoDB, Flotype (now.js), Ning
 Folks will be onsite to answer any technical questions you may have...
 
 
