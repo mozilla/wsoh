@@ -1,1 +1,58 @@
-The instructions go ==> here.
+Welcome to WSOH and we're looking forward to a great night of hacking with all of you! Below are instructions for WSOH, the list of the themes/APIs, the list of participating companies, and the judging criteria. For those of you who need transportation, make sure you add your name to our Google doc (see Transportation section at the end).
+
+
+GETTING STARTED:
+- All projects (with team composition) must be submitted on the Etherpad document before July 22nd
+http://etherpad.mozilla.com:9000/WSOH
+- No more than 4 members per team ; individual contributors welcome.
+- If you have a project and need more members on your team, please indicate the type of technical skills set you're looking for. Please add your contact info so students can reach you.
+- For those of you who don't have a project/idea, nor a team, please find one and add yourself on the Etherpad
+
+
+INSTRUCTIONS:
+- You may start hacking on your project as early as today (7/15)
+- On July 22/23, you may hack on your project from 7.30pm until 7.30am
+- Show & Tell will start promptly at 8am on the 23rd and each team will have 2min to present
+
+
+THEMES/APIs:
+At Mozilla, we care about technology that advances the Web for everyone, while keeping it open, decentralized,interoperable, people-centric, and fun. These WSOH challenges are proposed in that spirit. After all, hacking is about scratching an itch, and really, no one else can tell you where to scratch, or what tools to scratch with:
+
+* Build something interesting with HTML 5 & video technology
+* Build something that enables cross-device sharing or social interaction
+* Data visualization - use data to tell an interesting story in a new way, reveal something new
+* Build something interesting that leverages user identity and the social graph
+* Build a browser extension (bonus points if it maps to one of the above: social, identity, datavis)
+* A vast amount of information online is locked up inside PDFs, Word documents, and so on. Scribd can convert this to pure HTML5 — use the embedding API to expose this information from your favorite data source! (http://www.scribd.com/developers)
+* Best use of the V3 API (http://code.google.com/apis/maps/documentation/javascript/)
+* Build something that syncs dropbox with another service (flickr, facebook, gmail)
+* Build another interface into dropbox (sftp dropbox server, webdav, fuse, gvfs, browser extension, public share website, twitter-like dropbox webpage)
+*  Build something that uses data mashups from the Yahoo! Query Language (YQL) in interesting ways
+-The background documentation for YQL is available at http://developer.yahoo.com/yql and the test console is available at http://developer.yahoo.com/yql/console]
+  
+* Hardware hack: using hardware/an unexpected device to do one of the above
+* Open challenge: could be anything (be creative!)
+
+LIST OF COMPANIES SENDING ENGINEERING ADVISORS (as of 7/15)
+Mozilla, Github, Google, Dropbox, Yahoo!, Scribd, Meebo, 10gen/MongoDB, Flotype (now.js) 
+Folks will be onsite to answer any technical questions you may have...
+
+
+JUDGING PANEL (for Show & Tell on July 23, 8am)
+- Ben Keighran, Chomp Inc, CEO & Co-Founder
+- Kevin Rose, Milk Inc, CEO & Co-Founder | Digg, Board Member and Founder
+- Pascal Finette, Director of Mozilla's Web FWD Accelerator Program (https://webfwd.org)
+
+PRIZES (4 members max per team):
+- winning project: a conference of your choice within the US (we'll pay for your travels, hotel, and conference fees)
+- second place: Samsung Galaxy Tab 10.1
+- third place: Samsung Galaxy S II phone
+
+TRANSPORTATION
+Mozilla will provide shuttles in the evening of July 22nd and the morning of July 23rd from Mountain View's Caltrain Station to CHM (Computer History Museum).
+Please add your name to the survey if you'd like to request transportation:
+http://www.surveymonkey.com/s/LGHRWTP
+//the shuttle will have signs with Mozilla and WSOH 
+Caltrain's schedule: http://www.caltrain.com/schedules/weekdaytimetable.html
+
+ANY QUESTIONS? Please email me at julie@mozilla.com
