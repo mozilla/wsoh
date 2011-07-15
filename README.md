@@ -34,6 +34,7 @@ For WSOH we chose to focus on projects and challenges that advance the Web for e
 * Build another interface into dropbox (sftp dropbox server, webdav, fuse, gvfs, browser extension, public share website, twitter-like dropbox webpage)
 * Build something that uses data mashups from the Yahoo! Query Language (YQL) in interesting ways
     * The background documentation for YQL is available at http://developer.yahoo.com/yql and the test console is available at http://developer.yahoo.com/yql/console
+* Build a real-time game or application using NowJS
 * Hardware hack: using hardware/an unexpected device to do one of the above
 * Open challenge: could be anything (be creative!)
 
