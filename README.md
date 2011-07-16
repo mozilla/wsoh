@@ -66,7 +66,7 @@ We will rate the demos across 4 dimensions:
 4. Practicality – How useful is this demo in enhancing the Web today?
 
 
-PRIZES (4 members max per team):
+Prizes (4 members max per team):
 --------------------------------
 - Winning project: a conference of your choice within the US (we'll pay for your travels, hotel, and conference fees)
 - Second place: Samsung Galaxy Tab 10.1
