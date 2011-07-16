@@ -1,5 +1,5 @@
-Welcome to WSOH and we're looking forward to a great night of hacking with all of you! Below are instructions for WSOH, including projects themes, participating companies, judging criteria, prizes, and so on. 
-prizes, and the judging criteria. For those of you needing transportation, fill out the SurveyMonkey (see Transportation section at the end).
+Welcome to WSOH and we're looking forward to a great night of hacking with all of you! Below are instructions for WSOH, including projects themes, participating companies, judging criteria, prizes, and so on. <br>
+For those of you needing transportation, fill out the SurveyMonkey (see Transportation section at the end).
 
 
 Getting Started:
