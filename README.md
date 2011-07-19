@@ -30,6 +30,7 @@ For WSOH we chose to focus on projects and challenges that advance the Web for e
 * Data visualization - use data to tell an interesting story in a new way, reveal something new
 * Build something interesting that leverages user identity and the social graph
 * Build a browser extension (bonus points if it maps to one of the above: social, identity, datavis)
+* Build something to enable employee collaboration in the office
 * A vast amount of information online is locked up inside PDFs, Word documents, and so on. Scribd can convert this to pure HTML5 — use the embedding API to expose this information from your favorite data source! (http://www.scribd.com/developers)
 * Best use of the [Google Maps Javascript API V3](http://code.google.com/apis/maps/documentation/javascript/)
 * Build something that syncs dropbox with another service (flickr, facebook, gmail)
@@ -44,7 +45,7 @@ For WSOH we chose to focus on projects and challenges that advance the Web for e
 
 List of Companies Sending Engineering Advisors (as of 7/15):
 ------------------------------------------------------------
-Mozilla, Github, Google, Dropbox, Yahoo!, Scribd, Meebo, 10gen/MongoDB, Flotype (now.js), Ning, and Bloomreach <br>
+Mozilla, Github, Google, Dropbox, Yahoo!, Scribd, Meebo, 10gen/MongoDB, Flotype (now.js), Box, Ning, and Bloomreach <br>
 Folks will be onsite to answer any technical questions you may have...
 
 
