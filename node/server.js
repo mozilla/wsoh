@@ -1,55 +1,52 @@
 ﻿var
   path = require('path'),
-  express = require('express')
+  express = require('express'),
+  fs = require('fs'),
+  nowjs = require("now")
 
   PORT = 8003,
   WEBROOT = path.join(path.dirname(__filename), 'webroot');
 
-server = express.createServer()
-server.use('/static',express.static(WEBROOT));
+app = express.createServer()
+app.use('/static',express.static(WEBROOT));
 
-server.get('/', function(req,res){
-  res.send('Hello World');
+app.get('/', function(req,res){
+  fs.readFile(WEBROOT+'/index.html', function(err, data){
+    res.writeHead(200, {'Content-Type':'text/html'}); 
+    res.write(data);  
+    res.end();
+  });
+  
 });
-server.listen(PORT)
-console.log('Server running on port ' + PORT)
+
+app.listen(PORT);
+var everyone = nowjs.initialize(app);
+console.log('App running on port ' + PORT);
 
 
-var nowjs = require("now");
-var everyone = nowjs.initialize(server);
 
-static_serve = function(WEBROOT, req, res){
-  var ip = req.connection.remoteAddress;
-  paperboy
-    .deliver(WEBROOT, req, res)
-    .addHeader('Expires', 300)
-    .addHeader('X-PaperRoute', 'Node')
-    .before(function() {
-      console.log('Received Request');
-    })
-    .after(function(statCode) {
-      log(statCode, req.url, ip);
-    })
-    .error(function(statCode, msg) {
-      res.writeHead(statCode, {'Content-Type': 'text/plain'});
-      res.end("Error " + statCode);
-      log(statCode, req.url, ip, msg);
-    })
-    .otherwise(function(err) {
-      res.writeHead(404, {'Content-Type': 'text/plain'});
-      res.end("Error 404: File not found");
-      log(404, req.url, ip, err);
-    });
+//Talk to database but not really
+var playlists={}
+function get_playlist(ID){
+  return playlists[ID];
 }
 
-function log(statCode, url, ip, err) {
-  var logStr = statCode + ' - ' + url + ' - ' + ip;
-  if (err)
-    logStr += ' - ' + err;
-  console.log(logStr);
+function set_playlist(ID,playlist){
+  playlists[ID]=playlist
 }
 
+everyone.now.brodcastPlayist = function(playlist){
+  set_playlist(this.now.roomID,playlist);
+  everyone.now.filterBroadcastPlaylist(playlist,this.now.roomID)
+}
 
+everyone.now.filterBroadcastPlaylist = function(playlist, targetRoomId){
+  if(targetRoomId == this.now.roomID){
+    this.now.receivePlaylist(playlist);
+  }
+}
+
+/*
 nowjs.on('connect', function(){
   this.now.room = "room 1";
   nowjs.getGroup(this.now.room).addUser(this.user.clientId);
@@ -59,7 +56,7 @@ nowjs.on('connect', function(){
 
 nowjs.on('disconnect', function(){
   console.log("Left: " + this.now.name);
-});
+});*/
 
 everyone.now.changeRoom = function(newRoom){
   nowjs.getGroup(this.now.room).removeUser(this.user.clientId);
