@@ -7,14 +7,12 @@
 <script src="/static/lib/sammy.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
-  var global=this
-  var refresh = function(){
-      now.getPlaylist(function(message){
-        console.log(this)
-        $('div').text(message);
-    });
+$(document).ready(function(){
+  now.roomID=window.location.pathname.split('/')[2]
+  now.setup = function(playlist){
+      $('div').text(playlist);
   }
-$(document).ready(function(){  
+    
   now.consoleOut = function(message){
     $('div').text(message)
     console.debug(message)
@@ -24,34 +22,6 @@ $(document).ready(function(){
     now.distributeMessage($("#text-input").val());
     $("#text-input").val("");
   });
-  $("#refresh").click(function(){
-    refresh()
-  });
-  
-
-  now.roomID='123';
-  console.debug(now);
-  console.debug(this);
-  var app = $.sammy(function(context) {
-    this.get('#/', function() {
-		//landing page
-		//allow joining of room
-		//create room with specified id
-		console.debug('root')
-    });
-    this.get('#/playlist/:id', function() {
-      //show current room's playlist
-      //allow editing of playlists by anybody 
-      //editing: shift order of songs, delete songs
-      console.debug(this.params.id);
-      now.roomID=this.params.id;
-      global.refresh()
-    });
-  });
-  app.run('#/')
-  
-
-
 });
 </script>
 </head>
