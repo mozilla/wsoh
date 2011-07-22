@@ -15,13 +15,38 @@ $(document).ready(function(){
   var app = $.sammy(function() {
 
     this.get('#/', function() {
-      console.debug('root')
+		//landing page
+		//allow joining of room
+		//create room with specified id
     });
+    
+    this.get('#/:roomID', function() {
+		//if "host", start playing songs 
+		//if "host" or "guest" show album art, play/pause/next/volume controls.
+		//show playlist
+		now.roomID=this.params.roomID;
+      	playlist = prompt("Playlist?", "");
+      	now.brodcastPlayist(playlist);
+    });
+    
+
+    this.get('#/playlist/:id', function() {
+      //show current room's playlist
+      //allow editing of playlists by anybody 
+      //editing: shift order of songs, delete songs
+      
+    });
+    
+    this.get('#/search', function() {
+      //add songs to playlist
+      //search bar --> returns list of matching songs
+      //everyone can add song to current playlist 
+    });
+    
 
     this.get('#/:id', function() {
-      now.roomID=this.params.id
-      playlist = prompt("Playlist?", "");
-      now.brodcastPlayist(playlist);
+      
+
     });
 
   });
