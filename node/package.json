@@ -1,0 +1,9 @@
+{
+  "name": "socialplay",
+  "description": "Social Music Player",
+  "version": "0.0.1",
+  "dependencies": {
+    "now": ">= 0.6.1",
+    "express":">=2.4.3"
+  }
+}

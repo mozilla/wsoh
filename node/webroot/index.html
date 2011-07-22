@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>nowjs test</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="/nowjs/now.js"></script>
+<script src="/static/lib/sammy.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+$(document).ready(function(){
+  now.receivePlaylist = function(playlist){
+    $('div').text(playlist);
+  }
+  console.debug('hello')
+  var app = $.sammy(function() {
+
+    this.get('#/', function() {
+      console.debug('root')
+    });
+
+    this.get('#/:id', function() {
+      now.roomID=this.params.id
+      playlist = prompt("Playlist?", "");
+      now.brodcastPlayist(playlist);
+    });
+
+  });
+  app.run('#/')
+  
+
+});
+</script>
+</head>
+
+<body>
+
+<div>
+See JS Console
+</div>
+</body>
+</html>
