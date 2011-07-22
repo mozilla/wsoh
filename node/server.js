@@ -38,8 +38,7 @@ var nowjs = require("now");
 var everyone = nowjs.initialize(server);
 
 function set_playlist(ID,playlist){
-  redis.SET('playlist:'+ID,playlist)
-  playlists[ID]=playlist
+  redis.SET('playlist:'+ID,playlist);
 }
 
 everyone.now.distributeMessage = function(message){
