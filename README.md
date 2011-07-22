@@ -53,9 +53,10 @@ Folks will be onsite to answer any technical questions you may have...
 Judging Panel (for Show & Tell on July 23, 8am):
 ------------------------------------------------
 - Ben Keighran, Chomp Inc, CEO & Co-Founder
-- Kevin Rose, Milk Inc, CEO & Co-Founder | Digg, Board Member and Founder
+- Brad Kellett, Chomp Inc, Lead Search Engineer
 - Pascal Finette, Director of Mozilla's [Web FWD Accelerator Program](https://webfwd.org)
 - Christian Heilmann, Mozilla, Principal Developer Evangelist
+- Ben Galbraith, Walmart.com, VP, Mobile Engineering ; Ajaxian.com and Functionsource.com, co-founder.
 
 
 Judging Criteria:
