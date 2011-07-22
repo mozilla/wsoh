@@ -9,7 +9,7 @@
 
 var server = express.createServer();
 server.use('/static',express.static(WEBROOT));
-server.get('/',function(req, response){
+server.get('/playlist/*',function(req, response){
   fs.readFile(__dirname+'/index.html', function(err, data){
     response.writeHead(200, {'Content-Type':'text/html'}); 
     response.write(data);  
@@ -24,12 +24,11 @@ var everyone = nowjs.initialize(server);
 //Talk to database but not really
 var playlists={}
 var owen='win'
-everyone.now.getPlaylist = function(callback){
-  console.log('getPlaylist');
-  if(playlists[this.now.roomID]==undefined){
-    callback(owen);
+var getPlaylist = function(ID){
+  if(playlists[ID]==undefined){
+    return owen;
   }else{
-    callback(playlists[this.now.roomID]);
+    return playlists[ID];
   }
 }
 
@@ -47,3 +46,7 @@ everyone.now.printToConsole = function(message, targetRoomId){
     this.now.consoleOut(message);
   }
 };
+
+ everyone.on('connect', function(){
+   this.now.setup(getPlaylist(this.now.roomID));
+ });
