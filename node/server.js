@@ -21,9 +21,24 @@ server.listen(8080);
 var nowjs = require("now");
 var everyone = nowjs.initialize(server);
 
+//Talk to database but not really
+var playlists={}
+var owen='win'
+everyone.now.getPlaylist = function(callback){
+  console.log('getPlaylist');
+  if(playlists[this.now.roomID]==undefined){
+    callback(owen);
+  }else{
+    callback(playlists[this.now.roomID]);
+  }
+}
+
+function set_playlist(ID,playlist){
+  playlists[ID]=playlist
+}
 
 everyone.now.distributeMessage = function(message){
-  nowjs.getGroup(this.now.room).now.receiveMessage(this.now.name, message);
+  set_playlist(this.now.roomID,message)
   everyone.now.printToConsole(message,this.now.roomID)
 };
 

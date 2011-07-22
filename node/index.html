@@ -7,11 +7,14 @@
 <script src="/static/lib/sammy.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
-$(document).ready(function(){
-  now.receiveMessage = function(name, message){
-    $("#messages").append("<br>" + name + ": " + message);
+  var global=this
+  var refresh = function(){
+      now.getPlaylist(function(message){
+        console.log(this)
+        $('div').text(message);
+    });
   }
-  
+$(document).ready(function(){  
   now.consoleOut = function(message){
     $('div').text(message)
     console.debug(message)
@@ -21,9 +24,15 @@ $(document).ready(function(){
     now.distributeMessage($("#text-input").val());
     $("#text-input").val("");
   });
-  now.roomID='123'
+  $("#refresh").click(function(){
+    refresh()
+  });
   
-  var app = $.sammy(function() {
+
+  now.roomID='123';
+  console.debug(now);
+  console.debug(this);
+  var app = $.sammy(function(context) {
     this.get('#/', function() {
 		//landing page
 		//allow joining of room
@@ -34,8 +43,9 @@ $(document).ready(function(){
       //show current room's playlist
       //allow editing of playlists by anybody 
       //editing: shift order of songs, delete songs
-      console.debug(this.params.id)
-      now.roomID=this.params.id
+      console.debug(this.params.id);
+      now.roomID=this.params.id;
+      global.refresh()
     });
   });
   app.run('#/')
@@ -53,5 +63,6 @@ Hello World
 </div>
 <input type="text" id="text-input"/>
 <input type="button" value="Send" id="send-button"/>
+<input type="button" value="refresh" id="refresh"/>
 </body>
 </html>
