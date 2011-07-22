@@ -8,51 +8,20 @@
 
 <script>
 $(document).ready(function(){
-  now.receivePlaylist = function(playlist){
-    $('div').text(playlist);
+  now.roomID=window.location.pathname.split('/')[2]
+  now.setup = function(playlist){
+      $('div').text(playlist);
   }
-  console.debug('hello')
-  var app = $.sammy(function() {
-
-    this.get('#/', function() {
-		//landing page
-		//allow joining of room
-		//create room with specified id
-    });
     
-    this.get('#/:roomID', function() {
-		//if "host", start playing songs 
-		//if "host" or "guest" show album art, play/pause/next/volume controls.
-		//show playlist
-		now.roomID=this.params.roomID;
-      	playlist = prompt("Playlist?", "");
-      	now.brodcastPlayist(playlist);
-    });
-    
-
-    this.get('#/playlist/:id', function() {
-      //show current room's playlist
-      //allow editing of playlists by anybody 
-      //editing: shift order of songs, delete songs
-      
-    });
-    
-    this.get('#/search', function() {
-      //add songs to playlist
-      //search bar --> returns list of matching songs
-      //everyone can add song to current playlist 
-    });
-    
-
-    this.get('#/:id', function() {
-      
-
-    });
-
-  });
-  app.run('#/')
+  now.consoleOut = function(message){
+    $('div').text(message)
+    console.debug(message)
+  }
   
-
+  $("#send-button").click(function(){
+    now.distributeMessage($("#text-input").val());
+    $("#text-input").val("");
+  });
 });
 </script>
 </head>
@@ -60,7 +29,10 @@ $(document).ready(function(){
 <body>
 
 <div>
-See JS Console
+Hello World
 </div>
+<input type="text" id="text-input"/>
+<input type="button" value="Send" id="send-button"/>
+<input type="button" value="refresh" id="refresh"/>
 </body>
 </html>
