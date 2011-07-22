@@ -43,7 +43,7 @@ module Grooveshark
     
     def album_art_url
       if @data['cover_art_filename'] && @data['cover_art_filename'] != ""
-        return "http://beta.grooveshark.com/static/amazonart/s#{@data['cover_art_filename']}"
+        return "http://beta.grooveshark.com/static/amazonart/m#{@data['cover_art_filename']}"
       else
         return "http://static.a.gs-cdn.net/webincludes/images/default/album_250.png"
       end
