@@ -6,6 +6,22 @@
 
   PORT = 8003,
   WEBROOT = path.join(path.dirname(__filename), '/webroot');
+  
+  
+var redislib = require("redis"),
+    redis = redislib.createClient();
+    
+redis.on("error", function (err) {
+    console.log("Redis connection error to " + redis.host + ":" + redis.port + " - " + err);
+});
+
+redis.SET('hello','world')
+var redis_get= function(key,callback){
+  redis.GET(key, function(err, res){
+    callback(res);
+  });
+}
+redis_get('hello',console.log)
 
 var server = express.createServer();
 server.use('/static',express.static(WEBROOT));
@@ -21,18 +37,8 @@ server.listen(8080);
 var nowjs = require("now");
 var everyone = nowjs.initialize(server);
 
-//Talk to database but not really
-var playlists={}
-var owen='win'
-var getPlaylist = function(ID){
-  if(playlists[ID]==undefined){
-    return owen;
-  }else{
-    return playlists[ID];
-  }
-}
-
 function set_playlist(ID,playlist){
+  redis.SET('playlist:'+ID,playlist)
   playlists[ID]=playlist
 }
 
@@ -47,6 +53,6 @@ everyone.now.printToConsole = function(message, targetRoomId){
   }
 };
 
- everyone.on('connect', function(){
-   this.now.setup(getPlaylist(this.now.roomID));
- });
+everyone.on('connect', function(){
+  redis_get('playlist:'+this.now.roomID,this.now.setup)
+});
