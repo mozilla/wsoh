@@ -51,10 +51,20 @@ everyone.now.iWantToBeThePlayer = function() {
     util.log("iWantToBeThePlayer");
     var group = nowjs.getGroup(this.now.roomID);
     var clientId = this.user.clientId;
+    // Check if the player asking is not already the current player
     if (clientId !== group.now.player) {
-        nowjs.getClient(group.now.player, function() {
-            this.now.someoneWantsToBeThePlayer(clientId);
-        });
+        // If there is no current player, the client becomes the player
+        if (!group.now.player) {
+            this.now.youAreThePlayerNow();
+            group.now.player = this.user.clientId;
+            util.log("New player: " + playerId);
+        }
+        // Otherwise ask the current player if he agrees on changing
+        else {
+            nowjs.getClient(group.now.player, function() {
+                this.now.someoneWantsToBeThePlayer(clientId);
+            });
+        }
     }
 }
 
@@ -89,6 +99,13 @@ everyone.now.distributeMessage = function(message){
 everyone.on('connect', function() {
     joinGroup(this.now.roomID, this);
     redis_get('playlist:'+this.now.roomID,this.now.setup)
+});
+
+everyone.on('disconnect', function() {
+    var group = nowjs.getGroup(this.now.roomID);
+    if (group.now.player == this.user.clientId) {
+        group.now.player = null;
+    }
 });
 
 
