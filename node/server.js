@@ -47,9 +47,33 @@ function set_playlist(ID,playlist){
     redis.SET('playlist:'+ID,playlist);
 }
 
+everyone.now.iWantToBeThePlayer = function() {
+    util.log("iWantToBeThePlayer");
+    var group = nowjs.getGroup(this.now.roomID);
+    var clientId = this.user.clientId;
+    if (clientId !== group.now.player) {
+        nowjs.getClient(group.now.player, function() {
+            this.now.someoneWantsToBeThePlayer(clientId);
+        });
+    }
+}
+
+everyone.now.changeThePlayerTo = function(playerId) {
+    util.log("changeThePlayerTo: " + playerId);
+    var group = nowjs.getGroup(this.now.roomID);
+    nowjs.getClient(playerId, function() {
+        this.now.youAreThePlayerNow();
+        group.now.player = playerId;
+        util.log("New player: " + playerId);
+    });
+}
+
 // Add a user to a group
 function joinGroup(groupId, client) {
-    group = nowjs.getGroup(groupId);
+    var group = nowjs.getGroup(groupId);
+    if (!group.now.player) {
+        group.now.player = client.user.clientId;
+    }
     group.addUser(client.user.clientId);
     util.log("Client " + client.user.clientId + " was added to group " + groupId);
 }
