@@ -36,13 +36,13 @@
   		new MBP.fastButton(document.getElementById('song-previous'), function() {
   			audioPlaylist.playlistPrev();
   		});
-  		addSwipeListener(document.getElementById('detect-swipe'), function(e) {
+  		/*addSwipeListener(document.getElementById('detect-swipe'), function(e) {
   			if (e.direction=="right") {
   				previous();
   			} else {
   				next();
   			}
-  		});
+  		});*/
   		
   		var fld = document.getElementById('song-search-box');
 		if (fld.addEventListener)
