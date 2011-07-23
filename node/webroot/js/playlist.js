@@ -57,14 +57,14 @@ var Playlist = function(instance, playlist, options) {
 	
 	if(this.renderjPlayer) {
 		$(".jp-previous").click(function() {
-			self.playlistPrev();
+			// self.playlistPrev();
 			now.previousSong();
 			// $(this).blur();
 			return false;
 		});
 
 		$(".jp-next").click(function() {
-			self.playlistNext();
+			// self.playlistNext();
 			now.nextSong();
 			// $(this).blur();
 			return false;
@@ -85,7 +85,7 @@ var Playlist = function(instance, playlist, options) {
 		});
 	
 		$("#song-list .song-listing").live("click", function () {
-			self.playlistChange($(this).attr('data-index'));
+			self.playlistChange(parseInt($(this).attr('data-index'), 10));
 			now.updatePlaylist(JSON.stringify({ playlist: self.playlist, current: self.current }));
 			return false;
 		});
@@ -133,13 +133,15 @@ Playlist.prototype = {
 		// $(this.cssSelector.playlist + "_item_" + index).addClass("jp-playlist-current").parent().addClass("jp-playlist-current");
 		this.current = index;
 		this.displayPlaylist();
-		if (this.renderjPlayer) {
-			$(this.cssSelector.jPlayer).jPlayer("setMedia", this.playlist[this.current]);
-			$("#song-album-art").attr('src', this.playlist[this.current].artworkURL);
+		if(this.playlist.length > 0) {
+			if (this.renderjPlayer) {
+				$(this.cssSelector.jPlayer).jPlayer("setMedia", this.playlist[parseInt(this.current, 10)]);
+				$("#song-album-art").attr('src', this.playlist[parseInt(this.current, 10)].artworkURL);
+			}
+			document.getElementById("song-artist").innerText = this.playlist[parseInt(this.current, 10)].artistName;
+			document.getElementById("song-album").innerText = this.playlist[parseInt(this.current, 10)].albumName;
+			document.getElementById("song-name").innerText = this.playlist[parseInt(this.current, 10)].songName;
 		}
-		document.getElementById("song-artist").innerText = this.playlist[this.current].artistName;
-		document.getElementById("song-album").innerText = this.playlist[this.current].albumName;
-		document.getElementById("song-name").innerText = this.playlist[this.current].songName;
 	},
 	playlistChange: function(index) {
 		this.playlistConfig(index);
@@ -169,10 +171,11 @@ Playlist.prototype = {
 	},
 	playlistAdd: function(song) {
 		this.playlist.push(song);
+		now.updatePlaylist(JSON.stringify({ playlist: this.playlist, current: this.current }));
 	},
 	playlistUpdate: function(songs, curr) {
 		same_song = songs[curr] == this.options[this.current]
-		this.options = songs;
+		this.playlist = songs;
 		if(!same_song) {
 			this.current = curr;
 			this.playlistConfig(this.current);
@@ -227,6 +230,8 @@ Playlist.prototype = {
 };
 
 function continueUpdatingButtons() {
-	audioPlaylist.updateButtons();
+	if(audioPlaylist.renderjPlayer && audioPlaylist.allowedToPlay) {
+		audioPlaylist.updateButtons();
+	}
 	setTimeout("continueUpdatingButtons()", 200);
 };
