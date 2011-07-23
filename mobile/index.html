@@ -28,14 +28,14 @@
   		background: #222222;
   		text-shadow: 0px 0px 3px #000;
   		height:100%;
-		overflow-x:hidden;
-		font-size: .75 em;
+		font-size: 11px;
+		overflow-x: hidden;
   	}
   	
   	#header-wrapper {
 	background: #333 url(img/linen.png);
 	width: 100%;
-	height: 15%;
+	height: auto;
 	margin: 0px 0px;
 	z-index: 1000;
 	padding: 10px 2px;
@@ -51,10 +51,17 @@
 		font-size: 1.5em;
 	}
 	
+	#nav {
+		height:5em;
+		width: 30em;
+		margin:auto;
+		background-color: red;
+	}
+	
 	#main {
 		position:relative;
 		top:.5em;
-		width: 40em;
+		width: 27.7em;
 		height: 25em;
 		margin: 0px auto;
 		overflow: hidden;
@@ -69,85 +76,58 @@
 	
 	#footer {
 		position: relative;
-		top: 1em;	
+		top: 2em;
+		height: 6em;
+		width:100%;
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#777777), color-stop(100%,#444444));
+       background: -webkit-linear-gradient(top, #777777 0%,#444444 100%);
 	}
 	
 	.album-art {
-		-webkit-transition: all 1s ease-in-out;
-		-moz-transition: all 1s ease-in-out;
-		-o-transition: all 1s ease-in-out;
-		-ms-transition: all 1s ease-in-out;
-		transition: all 1s ease-in-out;
+		-webkit-transition: all 1.0s ease-in-out;
+		-moz-transition: all .5s ease-in-out;
+		-o-transition: all .5s ease-in-out;
+		-ms-transition: all .5s ease-in-out;
+		transition: all .5s ease-in-out;
+		width:17em;
+		height:17em;
+		background-size: 17em 17em;
+		position:absolute;
+		top:1em;
+		-webkit-box-shadow:0px 0px 1.5em #000; 
+		-moz-box-shadow: 0px 0px 1.5em #000; 
+		box-shadow:0px 0px 1.5em #000
 	}
 	
 	.off-left {
-		position:absolute;
-		left:-25em;
-		top:1em;
-		width:17em;
-		height:17em;
-		z-index: 5;
-		background: #000 url('img/art_2.jpg');
-		background-size: 17em 17em;
-		-webkit-box-shadow:0px 0px 1em #000; 
-		-moz-box-shadow: 0px 0px 1em #000; 
-		box-shadow:0px 0px 1em #000;
+		-webkit-transform:translate(-20em,1em) scale(1.3);
+		-moz-transform:translate(-20em,1em) scale(1.3);
+		z-index: 8;
 	}
 	
 	.current {
-		position:absolute;
-		left:0px;
-		top:1em;
-		width:17em;
-		height:17em;
+		-webkit-transform:scale(1) translate(0,0);
+		-moz-transform:scale(1) translate(0,0);
 		z-index: 5;
-		background: #000 url('img/art_2.jpg');
-		background-size: 17em 17em;
-		-webkit-box-shadow:0px 0px 1em #000; 
-		-moz-box-shadow: 0px 0px 1em #000; 
-		box-shadow:0px 0px 1em #000; 
 	}
 	.next {
-		position:absolute;
-		left:8em;
-		top:2em;
-		width:13em;
-		height:13em;
+		-webkit-transform:translate(8em,-.5em) scale(.8);
+		-moz-transform:translate(8em,-.5em) scale(.8);
 		z-index: 4;
-		background-size: 13em 13em;
-		-webkit-box-shadow:0px 0px 1.5em #000; 
-		-moz-box-shadow: 0px 0px 1.5em #000; 
-		box-shadow:0px 0px 1.5em #000; 
 	}
 	.next2nd {
-		position:absolute;
-		left:14em;
-		top:3.5em;
-		width:10em;
-		height:10em;
+		-webkit-transform:translate(14em,-1.5em) scale(.6);
+		-moz-transform:translate(14em,-1.5em) scale(.6);
 		z-index: 3;
-		background: #000 url('img/art_3.jpg');
-		background-size: 10em 10em;
-		-webkit-box-shadow:0px 0px 1.5em #000; 
-		-moz-box-shadow: 0px 0px 1.5em #000; 
-		box-shadow:0px 0px 1.5em #000;  
 	}
 	
 	.off-right {
 		position:absolute;
-		left:20em;
-		top:3.5em;
-		width:7em;
-		height:7em;
+		-webkit-transform:translate(20em,-2.5em) scale(.3);
+		-moz-transform:translate(20em,-2.5em) scale(.3);
 		z-index: 2;
-		background: #000 url('img/art_3.jpg');
-		background-size: 7em 7em;
-		-webkit-box-shadow:0px 0px 1.5em #000; 
-		-moz-box-shadow: 0px 0px 1.5em #000; 
-		box-shadow:0px 0px 1.5em #000;  
-	}
-	
-	#song {
+	}	
+	#song-name {
 		position: absolute;
 		top: 7.3em;
 		left: 0em;
@@ -155,7 +135,7 @@
 		z-index: 6; 	
 	}
 	
-	#artist {
+	#song-artist {
 		position: absolute;
 		top: 10.3em;
 		left: 0em;
@@ -163,7 +143,7 @@
 		z-index: 6; 	
 	}
 	
-	#album-name {
+	#song-album {
 		position: absolute;
 		top: 12.6em;
 		left: 0em;
@@ -171,91 +151,112 @@
 		z-index: 6; 	
 	}
 	
+	#controls-wrapper {
+		width:26em;
+		margin: auto;
+		position:relative;
+		top:.5em;
+		left:4.5em;
+	}
+	
 	#song-under-controls {
-		width: 10em;
-		margin: auto;	
-	}
-	#song-under-controls a {
-       background: url(img/controls.png) center 5px no-repeat;
+		height:8em;
+		width:28em;
+		margin: 1em auto;	
 	}
 	
-	#song-under-controls a#song-play-pause {}
-	
-	#song-under-controls a#song-play-pause.paused {
-	       background-position: center 5px, 0 0;
-	}
-	
-	#song-under-controls a#song-previous {
-	       background-position: center -46px, 0 0;
-	}
-	
-	#song-under-controls a#song-next {
-	       background-position: center -75px, 0 0;
-	}
 	#song-under-controls a {
        display: inline-block;
        color: #fff;
-       padding: 8px 10px;
        text-indent: -9999px;
        background: #777777;
-       background: url(img/cntrols.png) center -20px no-repeat, -moz-linear-gradient(top, #777777 0%, #444444 100%);
-       background: url(img/controls.png) center -20px no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#777777), color-stop(100%,#444444));
-       background: url(img/controls.png) center -20px no-repeat, -webkit-linear-gradient(top, #777777 0%,#444444 100%);
-       background: url(img/controls.png) center -20px no-repeat, -o-linear-gradient(top, #777777 0%,#444444 100%);
-       background: url(img/controls.png) center -20px no-repeat, -ms-linear-gradient(top, #777777 0%,#444444 100%);
-       background: url(img/controls.png) center -20px no-repeat, linear-gradient(top, #777777 0%,#444444 100%);
-       border-left: 1px solid #666;
-       border-right: 1px solid #000;
-       width: 20px;
+       width: 4em;
+       height:5em;
+       background-size: 4em 4em;
+       background-position:center center;
+       padding: 0em 1em;
 	}
 		
-	#song-under-controls a#song-play-pause {}
+	#song-under-controls a#song-play-pause {
+		width:4em;
+		background: url(img/play.png) no-repeat;
+       background: url(img/play.png)  no-repeat;
+       background: url(img/play.png)  no-repeat;
+       background: url(img/play.png)  no-repeat;
+       background: url(img/play.png)  no-repeat;
+       background: url(img/play.png)  no-repeat;
+	}
 	
 	#song-under-controls a#song-play-pause.paused {
-	       background-position: center -20px, 0 0;
+		width:4em;
+		background: url(img/pause.png) no-repeat;
+       background: url(img/play.png)  no-repeat;
+       background: url(img/play.png)  no-repeat;
+       background: url(img/pause.png)  no-repeat;
+       background: url(img/pause.png)  no-repeat;
+       background: url(img/pause.png)  no-repeat;
+       
 	}
 	
 	#song-under-controls a#song-previous {
-	       background-position: center -46px, 0 0;
+	      background: url(img/prev.png) no-repeat;
+       background: url(img/prev.png)  no-repeat;
+       background: url(img/prev.png)  no-repeat;
+       background: url(img/prev.png)  no-repeat;
+       background: url(img/prev.png)  no-repeat;
+       background: url(img/prev.png)  no-repeat;
 	}
 	
 	#song-under-controls a#song-next {
-	       background-position: center -75px, 0 0;
+	       background: url(img/next.png) no-repeat;
+       background: url(img/next.png)  no-repeat;
+       background: url(img/next.png)  no-repeat;
+       background: url(img/next.png)  no-repeat;
+       background: url(img/next.png)  no-repeat;
+       background: url(img/next.png)  no-repeat;
 	}
 	
 	#song-under-controls a:first-child {
-	       -webkit-border-top-left-radius: 5px;
-	       -webkit-border-bottom-left-radius: 5px;
-	       -moz-border-radius-topleft: 5px;
-	       -moz-border-radius-bottomleft: 5px;
-	       border-top-left-radius: 5px;
-	       border-bottom-left-radius: 5px;
+	       -webkit-border-top-left-radius: .5em;
+	       -webkit-border-bottom-left-radius: .5em;
+	       -moz-border-radius-topleft: .5em;
+	       -moz-border-radius-bottomleft: .5em;
+	       border-top-left-radius: .5em;
+	       border-bottom-left-radius: .5em;
 	}
 	
 	#song-under-controls a:last-child {
-	       -webkit-border-top-right-radius: 5px;
-	       -webkit-border-bottom-right-radius: 5px;
-	       -moz-border-radius-topright: 5px;
-	       -moz-border-radius-bottomright: 5px;
-	       border-top-right-radius: 5px;
-	       border-bottom-right-radius: 5px;
+	       -webkit-border-top-right-radius: .5em;
+	       -webkit-border-bottom-right-radius: .5em;
+	       -moz-border-radius-topright: .5em;
+	       -moz-border-radius-bottomright: .5em;
+	       border-top-right-radius: .5em;
+	       border-bottom-right-radius: .5em;
 	       border-right: none;
 	}
   </style>
   <script src="js/libs/modernizr-custom.js"></script>
   <script>
+  var playlist;
   	function init() {
-  		new MBP.fastButton(document.getElementById('song-next'), function() {next()});
-  		new MBP.fastButton(document.getElementById('song-previous'), function() {previous()});
+
+  		new MBP.fastButton(document.getElementById('song-next'), function() {
+  			next()
+  		});
+  		new MBP.fastButton(document.getElementById('song-previous'), function() {
+  			previous()
+  		});
   		addSwipeListener(document.getElementById('detect-swipe'), function(e) {
-  			if (e=="right") {
+  			if (e.direction=="right") {
   				previous();
   			} else {
   				next();
   			}
   		});
   	}
+  	
   	function next() {
+  		console.log('next')
   		document.getElementsByClassName('current')[0].setAttribute('class','off-left album-art');
   		document.getElementsByClassName('next')[0].setAttribute('class','current album-art')
   		document.getElementsByClassName('next2nd')[0].setAttribute('class','next album-art')
@@ -263,11 +264,12 @@
   	}
   	
   	function previous() {
+  		console.log('previous')
 		document.getElementsByClassName('next2nd')[0].setAttribute('class','off-right album-art')
-  		document.getElementsByClassName('next')[0].setAttribute('class','next2nd album-art')
-  		document.getElementsByClassName('current')[0].setAttribute('class','next album-art')
-  		document.getElementsByClassName('off-left')[0].setAttribute('class','current album-art');
-  		
+		document.getElementsByClassName('next')[0].setAttribute('class','next2nd album-art')
+		document.getElementsByClassName('current')[0].setAttribute('class','next album-art')
+		document.getElementsByClassName('off-left')[0].setAttribute('class','current album-art');
+		
   		//update playlist
   	}
   	
@@ -341,20 +343,26 @@
     <div id="header-wrapper">
 		<h1>Social HTML5 Music Player</h1>
     </div>
+    <div id="nav">
+    	<div id="now-playing"></div>
+    	<div id="playlist"></div>
+    	<div id="search"></div>
+    </div>
     <div id="main" role="main" onclick="">
     <div id="detect-swipe"></div>
-      <div class="current album-art" style="background: #000 url('img/art_1.png')"></div>
+      <div class="off-left album-art" style="background: #000 url('img/art_2.jpg')"></div>
+      <div class="current album-art" style="background: #000 url('img/art_2.jpg')"></div>
       <div class="next album-art" style="background: #000 url('img/art_2.jpg');" ></div>
       <div class="next2nd album-art" style="background: #000 url('img/art_3.jpg');"></div>
-      <div class="off-right album-art" style="background: #000 url('img/art_1.png');"></div>
+      <div class="off-right album-art" style="background: #000 url('img/art_2.jpg');"></div>
       <div id="info">
-      	<div id="song">
+      	<div id="song-name">
       		S and M
       	</div>
-      	<div id="artist">
+      	<div id="song-artist">
       		Rihanna
       	</div>
-      	<div id="album-name">
+      	<div id="song-album">
       		Good girl gone bad
       	</div>
       	
