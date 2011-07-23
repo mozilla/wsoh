@@ -67,6 +67,11 @@
 		overflow: hidden;
 	}
 	
+	#song-list {
+		visibility: hidden;
+		display:none;
+	}
+	
 	#detect-swipe {
 		position: absolute;
 		width:100%;
@@ -184,36 +189,21 @@
        background: url(img/play.png)  no-repeat;
        background: url(img/play.png)  no-repeat;
        background: url(img/play.png)  no-repeat;
-       background: url(img/play.png)  no-repeat;
+       background: url(/static/mobile/img/play.png)  no-repeat;
 	}
 	
 	#song-under-controls a#song-play-pause.paused {
 		width:4em;
-		background: url(img/pause.png) no-repeat;
-       background: url(img/play.png)  no-repeat;
-       background: url(img/play.png)  no-repeat;
-       background: url(img/pause.png)  no-repeat;
-       background: url(img/pause.png)  no-repeat;
-       background: url(img/pause.png)  no-repeat;
+       background: url(/static/mobile/img/pause.png)  no-repeat;
        
 	}
 	
 	#song-under-controls a#song-previous {
-	      background: url(img/prev.png) no-repeat;
-       background: url(img/prev.png)  no-repeat;
-       background: url(img/prev.png)  no-repeat;
-       background: url(img/prev.png)  no-repeat;
-       background: url(img/prev.png)  no-repeat;
-       background: url(img/prev.png)  no-repeat;
+       background: url(/static/mobile/img/prev.png)  no-repeat;
 	}
 	
 	#song-under-controls a#song-next {
-	       background: url(img/next.png) no-repeat;
-       background: url(img/next.png)  no-repeat;
-       background: url(img/next.png)  no-repeat;
-       background: url(img/next.png)  no-repeat;
-       background: url(img/next.png)  no-repeat;
-       background: url(img/next.png)  no-repeat;
+       background: url(/static/mobile/img/next.png)  no-repeat;
 	}
 	
 	#song-under-controls a:first-child {
@@ -236,7 +226,7 @@
 	}
   </style>
   <script src="/static/mobile/js/libs/modernizr-custom.js"></script>
-  <script src="/static/js/playist.js"></script>
+  <script src="/static/js/playlist.js"></script>
   <script>
   var playlist;
   	function init() {
@@ -254,7 +244,7 @@
   			audioPlaylist.playlistNext();
   		});
   		new MBP.fastButton(document.getElementById('song-previous'), function() {
-  			audioPlaylist.playlistNext();previous()
+  			audioPlaylist.playlistNext();
   		});
   		addSwipeListener(document.getElementById('detect-swipe'), function(e) {
   			if (e.direction=="right") {
@@ -341,13 +331,14 @@
     	<div id="playlist"></div>
     	<div id="search"></div>
     </div>
+    <div id="song-list"></div>
     <div id="main" role="main" onclick="">
     <div id="detect-swipe"></div>
-      <div class="off-left album-art" style="background: #000 url('img/art_2.jpg')"></div>
-      <div class="current album-art" style="background: #000 url('img/art_2.jpg')"></div>
-      <div class="next album-art" style="background: #000 url('img/art_2.jpg');" ></div>
-      <div class="next2nd album-art" style="background: #000 url('img/art_3.jpg');"></div>
-      <div class="off-right album-art" style="background: #000 url('img/art_2.jpg');"></div>
+      <div class="off-left album-art" style="background: #000 url('/static/mobile/img/art_2.jpg')"></div>
+      <div class="current album-art" style="background: #000 url('/static/mobile/img/art_2.jpg')"></div>
+      <div class="next album-art" style="background: #000 url('/static/mobile/img/art_2.jpg');" ></div>
+      <div class="next2nd album-art" style="background: #000 url('/static/mobile/img/art_3.jpg');"></div>
+      <div class="off-right album-art" style="background: #000 url('/static/mobile/img/art_2.jpg');"></div>
       <div id="info">
       	<div id="song-name">
       		S and M
@@ -372,10 +363,10 @@
   </div> <!--! end of #container -->
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
-  <script>window.jQuery || document.write("<script src='js/libs/jquery-1.5.1.min.js'>\x3C/script>")</script>
+  <script>window.jQuery || document.write("<script src='/static/mobile/js/libs/jquery-1.5.1.min.js'>\x3C/script>")</script>
   
   <!-- scripts concatenated and minified via ant build script -->
-  <script src="js/mylibs/helper.js"></script>
+  <script src="/static/mobile/js/mylibs/helper.js"></script>
   <!-- end concatenated and minified scripts-->
   
   <script>
