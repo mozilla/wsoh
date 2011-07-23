@@ -96,6 +96,8 @@
 		overflow: hidden;
 	}
 	
+	
+	
 	#detect-swipe {
 		position: absolute;
 		width:100%;
@@ -323,24 +325,29 @@
   <script src="/static/mobile/js/libs/modernizr-custom.js"></script>
   <script src="/static/js/playlist.js"></script>
   <script src="/static/mobile/js/script.js"></script>
+  <script src="/static/mobile/js/iscroll-lite.js"></script>
 </head>
 
 <body onload="init()">
 
   <div id="container">
     <div id="header-wrapper">
-		<h1>Social HTML5 Music Player</h1>
+		<h1>Musique</h1>
     </div>
     <div id="nav">
     	<div id="now-playing" class="nav-button"></div>
     	<div id="playlist" class="nav-button"></div>
     	<div id="search" class="nav-button"></div>
     </div>
+    <div id="add-song-wrapper">
     <div id="add-song" class="disabled">
     	<input id="song-search-box" placeholder="Add a song!"></input>
 		<div id="search-results"> </div>
     </div>
-    <div id="song-list" class="disabled"></div>
+    
+    <div id="song-list-wrapper">
+    	<div id="song-list" class="disabled"></div>
+    </div>
     <div id="main" role="main" onclick="">
     <div id="detect-swipe"></div>
       <div class="off-left album-art" style="background: #000 url('/static/mobile/img/art_2.jpg')"></div>
