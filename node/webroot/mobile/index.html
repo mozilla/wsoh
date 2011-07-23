@@ -14,7 +14,7 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/mobile/img/m/apple-touch-icon.png">
   <link rel="apple-touch-icon-precomposed" href="/static/mobile/img/l/apple-touch-icon-precomposed.png">
   <link rel="shortcut icon" href="/static/mobile/img/l/apple-touch-icon.png">
-  <meta name="apple-mobile-web-app-capable" content="yes" /> 
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-touch-fullscreen" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <link rel="apple-touch-startup-image" href="img/l/splash.png">
@@ -22,186 +22,186 @@
   <meta http-equiv="cleartype" content="on">
   <link rel="stylesheet" href="/static/mobile/css/style.css?v=1">
   <style>
-  	body, html {
-  		font-family: 'Rosario', Helvetica, Arial, sans-serif;
-  		color: #fff;
-  		background: #222222;
-  		text-shadow: 0px 0px 3px #000;
-  		height:100%;
-		font-size: 11px;
-		overflow-x: hidden;
-  	}
-  	
-  	.disabled {
-  		display:none;
-  	}
-  	
-  	#header-wrapper {
-	background: #333 url(img/linen.png);
-	width: 100%;
-	height: auto;
-	margin: 0px 0px;
-	z-index: 1000;
-	padding: 10px 2px;
-	-webkit-box-shadow:0px 0px 1.5em #000; 
-	-moz-box-shadow: 0px 0px 1.5em #000; 
-	box-shadow:0px 0px 1.5em #000
-	
-	}
-	
-	#header-wrapper h1 {
-		text-align:center;
-		margin: auto;
-		font-size: 1.5em;
-	}
-	
-	#nav {
-		height:5em;
-		width: 30em;
-		margin:auto;
-	}
-	
-	.nav-button {
-		width:6em;
-		height:3em;
-		margin: 1em 2em;
-		background-color:blue;
-		float:left;
-	}
-	
-	#main {
-		position:relative;
-		top:.5em;
-		width: 27.7em;
-		height: 25em;
-		margin: 0px auto;
-		overflow: hidden;
-	}
-	
-	#song-list {
-		position:relative;
-		top:.5em;
-		width: 27.7em;
-		height: 25em;
-		margin: 0px auto;
-		overflow: hidden;
-	}
-	
-	#add-song{
-		position:relative;
-		top:.5em;
-		width: 27.7em;
-		height: 25em;
-		margin: 0px auto;
-		overflow: hidden;
-	}
-	
-	
-	
-	#detect-swipe {
-		position: absolute;
-		width:100%;
-		height: 100%;
-		z-index: 10;
-	}
-	
-	#footer {
-		position: relative;
-		top: 2em;
-		height: 6em;
-		width:100%;
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#777777), color-stop(100%,#444444));
+    body, html {
+        font-family: 'Rosario', Helvetica, Arial, sans-serif;
+        color: #fff;
+        background: #222222;
+        text-shadow: 0px 0px 3px #000;
+        height:100%;
+        font-size: 11px;
+        overflow-x: hidden;
+    }
+
+    .disabled {
+        display:none;
+    }
+
+    #header-wrapper {
+    background: #333 url(img/linen.png);
+    width: 100%;
+    height: auto;
+    margin: 0px 0px;
+    z-index: 1000;
+    padding: 10px 2px;
+    -webkit-box-shadow:0px 0px 1.5em #000;
+    -moz-box-shadow: 0px 0px 1.5em #000;
+    box-shadow:0px 0px 1.5em #000
+
+    }
+
+    #header-wrapper h1 {
+        text-align:center;
+        margin: auto;
+        font-size: 1.5em;
+    }
+
+    #nav {
+        height:5em;
+        width: 30em;
+        margin:auto;
+    }
+
+    .nav-button {
+        width:6em;
+        height:3em;
+        margin: 1em 2em;
+        background-color:blue;
+        float:left;
+    }
+
+    #main {
+        position:relative;
+        top:.5em;
+        width: 27.7em;
+        height: 25em;
+        margin: 0px auto;
+        overflow: hidden;
+    }
+
+    #song-list {
+        position:relative;
+        top:.5em;
+        width: 27.7em;
+        height: 25em;
+        margin: 0px auto;
+    }
+
+    #add-song{
+        position:relative;
+        top:.5em;
+        width: 27.7em;
+        height: 25em;
+        margin: 0px auto;
+        overflow: hidden;
+    }
+
+
+
+    #detect-swipe {
+        position: absolute;
+        width:100%;
+        height: 100%;
+        z-index: 10;
+    }
+
+    #footer {
+        position: relative;
+        top: 2em;
+        height: 6em;
+        width:100%;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#777777), color-stop(100%,#444444));
        background: -webkit-linear-gradient(top, #777777 0%,#444444 100%);
-	}
-	
-	.under {
-		z-index: -1;
-	}
-	.album-art {
-		-webkit-transition: all 1.0s ease-in-out;
-		-moz-transition: all .5s ease-in-out;
-		-o-transition: all .5s ease-in-out;
-		-ms-transition: all .5s ease-in-out;
-		transition: all .5s ease-in-out;
-		width:17em;
-		height:17em;
-		background-size: 17em 17em;
-		position:absolute;
-		top:1em;
-		-webkit-box-shadow:0px 0px 1.5em #000; 
-		-moz-box-shadow: 0px 0px 1.5em #000; 
-		box-shadow:0px 0px 1.5em #000
-	}
-	
-	.off-left {
-		-webkit-transform:translate(-20em,1em) scale(1.3);
-		-moz-transform:translate(-20em,1em) scale(1.3);
-		z-index: 8;
-		opacity: 0;
-	}
-	
-	.current {
-		-webkit-transform:scale(1) translate(0,0);
-		-moz-transform:scale(1) translate(0,0);
-		z-index: 5;
-	}
-	.next {
-		-webkit-transform:translate(8em,-.5em) scale(.8);
-		-moz-transform:translate(8em,-.5em) scale(.8);
-		z-index: 4;
-	}
-	.next2nd {
-		-webkit-transform:translate(14em,-1.5em) scale(.6);
-		-moz-transform:translate(14em,-1.5em) scale(.6);
-		z-index: 3;
-	}
-	
-	.off-right {
-		position:absolute;
-		-webkit-transform:translate(20em,-2.5em) scale(.3);
-		-moz-transform:translate(20em,-2.5em) scale(.3);
-		z-index: 2;
-		opacity:0;
-	}	
-	#song-name {
-		position: absolute;
-		top: 7.3em;
-		left: 0em;
-		font-size: 2.5em;
-		z-index: 6; 	
-	}
-	
-	#song-artist {
-		position: absolute;
-		top: 10.3em;
-		left: 0em;
-		font-size: 2.0em;
-		z-index: 6; 	
-	}
-	
-	#song-album {
-		position: absolute;
-		top: 12.6em;
-		left: 0em;
-		font-size: 1.8em;
-		z-index: 6; 	
-	}
-	
-	#controls-wrapper {
-		width:26em;
-		margin: auto;
-		position:relative;
-		top:.5em;
-		left:4.5em;
-	}
-	
-	#song-under-controls {
-		height:8em;
-		width:28em;
-		margin: 1em auto;	
-	}
-	
-	#song-under-controls a {
+    }
+
+    .under {
+        z-index: -1;
+    }
+    .album-art {
+        -webkit-transition: all 1.0s ease-in-out;
+        -moz-transition: all .5s ease-in-out;
+        -o-transition: all .5s ease-in-out;
+        -ms-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+        width:17em;
+        height:17em;
+        background-size: 17em 17em;
+        position:absolute;
+        top:1em;
+        -webkit-box-shadow:0px 0px 1.5em #000;
+        -moz-box-shadow: 0px 0px 1.5em #000;
+        box-shadow:0px 0px 1.5em #000
+    }
+
+    .off-left {
+        -webkit-transform:translate(-20em,1em) scale(1.3);
+        -moz-transform:translate(-20em,1em) scale(1.3);
+        z-index: 8;
+        opacity: 0;
+    }
+
+    .current {
+        -webkit-transform:scale(1) translate(0,0);
+        -moz-transform:scale(1) translate(0,0);
+        z-index: 5;
+    }
+    .next {
+        -webkit-transform:translate(8em,-.5em) scale(.8);
+        -moz-transform:translate(8em,-.5em) scale(.8);
+        z-index: 4;
+    }
+    .next2nd {
+        -webkit-transform:translate(14em,-1.5em) scale(.6);
+        -moz-transform:translate(14em,-1.5em) scale(.6);
+        z-index: 3;
+    }
+
+    .off-right {
+        position:absolute;
+        -webkit-transform:translate(20em,-2.5em) scale(.3);
+        -moz-transform:translate(20em,-2.5em) scale(.3);
+        z-index: 2;
+        opacity:0;
+    }
+    #song-name {
+        position: absolute;
+        top: 7.3em;
+        left: 0em;
+        font-size: 2.5em;
+        z-index: 6;
+        white-space: nowrap;
+    }
+
+    #song-artist {
+        position: absolute;
+        top: 10.3em;
+        left: 0em;
+        font-size: 2.0em;
+        z-index: 6;
+    }
+
+    #song-album {
+        position: absolute;
+        top: 12.6em;
+        left: 0em;
+        font-size: 1.8em;
+        z-index: 6;
+    }
+
+    #controls-wrapper {
+        width:26em;
+        margin: auto;
+        position:relative;
+        top:.5em;
+        left:4.5em;
+    }
+
+    #song-under-controls {
+        height:8em;
+        width:28em;
+        margin: 1em auto;
+    }
+
+    #song-under-controls a {
        display: inline-block;
        color: #fff;
        text-indent: -9999px;
@@ -211,42 +211,42 @@
        background-size: 4em 4em;
        background-position:center center;
        padding: 0em 1em;
-	}
-		
-	#song-under-controls a#song-play-pause {
-		width:4em;
-		background: url(img/play.png) no-repeat;
+    }
+
+    #song-under-controls a#song-play-pause {
+        width:4em;
+        background: url(img/play.png) no-repeat;
        background: url(img/play.png)  no-repeat;
        background: url(img/play.png)  no-repeat;
        background: url(img/play.png)  no-repeat;
        background: url(img/play.png)  no-repeat;
        background: url(/static/mobile/img/play.png)  no-repeat;
-	}
-	
-	#song-under-controls a#song-play-pause.paused {
-		width:4em;
+    }
+
+    #song-under-controls a#song-play-pause.paused {
+        width:4em;
        background: url(/static/mobile/img/pause.png)  no-repeat;
-       
-	}
-	
-	#song-under-controls a#song-previous {
+
+    }
+
+    #song-under-controls a#song-previous {
        background: url(/static/mobile/img/prev.png)  no-repeat;
-	}
-	
-	#song-under-controls a#song-next {
+    }
+
+    #song-under-controls a#song-next {
        background: url(/static/mobile/img/next.png)  no-repeat;
-	}
-	
-	#song-under-controls a:first-child {
-	       -webkit-border-top-left-radius: .5em;
-	       -webkit-border-bottom-left-radius: .5em;
-	       -moz-border-radius-topleft: .5em;
-	       -moz-border-radius-bottomleft: .5em;
-	       border-top-left-radius: .5em;
-	       border-bottom-left-radius: .5em;
-	}
-	
-	#song-under-controls a:last-child {
+    }
+
+    #song-under-controls a:first-child {
+           -webkit-border-top-left-radius: .5em;
+           -webkit-border-bottom-left-radius: .5em;
+           -moz-border-radius-topleft: .5em;
+           -moz-border-radius-bottomleft: .5em;
+           border-top-left-radius: .5em;
+           border-bottom-left-radius: .5em;
+    }
+
+    #song-under-controls a:last-child {
        -webkit-border-top-right-radius: .5em;
        -webkit-border-bottom-right-radius: .5em;
        -moz-border-radius-topright: .5em;
@@ -254,73 +254,73 @@
        border-top-right-radius: .5em;
        border-bottom-right-radius: .5em;
        border-right: none;
-	}
-	
-	#song-list .song-listing {
-		border-top: 1px solid #666;
-		border-bottom: 1px solid #000;
-		color: #aaa;
-	}
-	
-	#song-list .song-listing:hover {
-		cursor: pointer;
-	}
-	
-	#song-list .song-listing:last-child:hover {
-		-webkit-border-bottom-right-radius: 10px;
-		-webkit-border-bottom-left-radius: 10px;
-		-moz-border-radius-bottomright: 10px;
-		-moz-border-radius-bottomleft: 10px;
-		border-bottom-right-radius: 10px;
-		border-bottom-left-radius: 10px;	
-	}
-	
-	#song-list .song-listing-index, #song-list .song-listing-album-art, #song-list .song-listing-album-information {
-		display: inline-block;
-	}
-	
-	#song-list .song-listing-index {
-		line-height: 50px;
-		width: 50px;
-		text-align: center;
-	}
-	
-	#song-list .song-listing-album-art {
-		vertical-align: middle;
-	}
-	
-	#song-list .song-listing-album-art img {
-		-webkit-box-shadow:0 0 5px #000;
-		-moz-box-shadow: 0 0 5px #000; 
-		box-shadow:0 0 5px #000;
-	}
-	
-	#song-list .song-listing-album-information {
-		vertical-align: top;
-		margin-left: 10px;
-		margin-top: 10px;
-	}
-	
-	#song-list .song-listing-album-information-song, #song-list .song-listing-album-information-artist {
-	/*	display: inline-block;*/
-	}
-	
-	#song-list .song-listing-album-information-song {
-		margin-bottom: 2px;
-	}
-	
-	#song-list .song-listing-album-information-artist {
-		font-size: smaller;
-	}
-	
-	#song-list .song-listing:hover {
-		background: #555;
-	/*	color: #444;*/
-	}
-	
-	#song-list .song-listing:last-child {
-		border-bottom: none;
-	}
+    }
+
+    #song-list .song-listing {
+        border-top: 1px solid #666;
+        border-bottom: 1px solid #000;
+        color: #aaa;
+    }
+
+    #song-list .song-listing:hover {
+        cursor: pointer;
+    }
+
+    #song-list .song-listing:last-child:hover {
+        -webkit-border-bottom-right-radius: 10px;
+        -webkit-border-bottom-left-radius: 10px;
+        -moz-border-radius-bottomright: 10px;
+        -moz-border-radius-bottomleft: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    #song-list .song-listing-index, #song-list .song-listing-album-art, #song-list .song-listing-album-information {
+        display: inline-block;
+    }
+
+    #song-list .song-listing-index {
+        line-height: 50px;
+        width: 50px;
+        text-align: center;
+    }
+
+    #song-list .song-listing-album-art {
+        vertical-align: middle;
+    }
+
+    #song-list .song-listing-album-art img {
+        -webkit-box-shadow:0 0 5px #000;
+        -moz-box-shadow: 0 0 5px #000;
+        box-shadow:0 0 5px #000;
+    }
+
+    #song-list .song-listing-album-information {
+        vertical-align: top;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+    #song-list .song-listing-album-information-song, #song-list .song-listing-album-information-artist {
+    /*  display: inline-block;*/
+    }
+
+    #song-list .song-listing-album-information-song {
+        margin-bottom: 2px;
+    }
+
+    #song-list .song-listing-album-information-artist {
+        font-size: smaller;
+    }
+
+    #song-list .song-listing:hover {
+        background: #555;
+    /*  color: #444;*/
+    }
+
+    #song-list .song-listing:last-child {
+        border-bottom: none;
+    }
   </style>
   <script src="/static/mobile/js/libs/modernizr-custom.js"></script>
   <script src="/static/js/playlist.js"></script>
@@ -333,21 +333,21 @@
 
   <div id="container">
     <div id="header-wrapper">
-		<h1>Musique</h1>
+        <h1>Musique</h1>
     </div>
     <div id="nav">
-    	<div id="now-playing" class="nav-button"></div>
-    	<div id="playlist" class="nav-button"></div>
-    	<div id="search" class="nav-button"></div>
+        <div id="now-playing" class="nav-button"></div>
+        <div id="playlist" class="nav-button"></div>
+        <div id="search" class="nav-button"></div>
     </div>
     <div id="add-song-wrapper">
     <div id="add-song" class="disabled">
-    	<input id="song-search-box" placeholder="Add a song!"></input>
-		<div id="search-results"> </div>
+        <input id="song-search-box" placeholder="Add a song!"></input>
+        <div id="search-results"> </div>
     </div>
-    
+
     <div id="song-list-wrapper">
-    	<div id="song-list" class="disabled"></div>
+        <div id="song-list" class="disabled"></div>
     </div>
     <div id="main" role="main" onclick="">
     <div id="detect-swipe"></div>
@@ -357,34 +357,40 @@
       <div class="next2nd album-art" style="background: #000 url('/static/mobile/img/art_3.jpg');"></div>
       <div class="off-right album-art" style="background: #000 url('/static/mobile/img/art_2.jpg');"></div>
       <div id="info">
-      	<div id="song-name">
-      		S and M
-      	</div>
-      	<div id="song-artist">
-      		Rihanna
-      	</div>
-      	<div id="song-album">
-      		Good girl gone bad
-      	</div>
-      	
+        <div id="song-name">
+            S and M
+        </div>
+        <div id="song-artist">
+            Rihanna
+        </div>
+        <div id="song-album">
+            Good girl gone bad
+        </div>
+
       </div>
     </div>
-    
+
     <div id="footer">
-		<div id="song-under-controls">
-		<div id="controls-wrapper">
-			<a href="#" id="song-previous">&nbsp;</a><a href="#" id="song-play-pause" class="paused">&nbsp;</a><a href="#" id="song-next">&nbsp;</a>
-		</div>
-		</div>
+        <div id="song-under-controls">
+        <div id="controls-wrapper">
+            <a href="#" id="song-previous">&nbsp;</a><a href="#" id="song-play-pause" class="paused">&nbsp;</a><a href="#" id="song-next">&nbsp;</a>
+        </div>
+        </div>
     </div>
   </div> <!--! end of #container -->
 
   <script>window.jQuery || document.write("<script src='/static/mobile/js/libs/jquery-1.5.1.min.js'>\x3C/script>")</script>
-  
+
+  <script src="/nowjs/now.js"></script>
+  <script src="/static/js/playlist.js"></script>
+  <script src="/static/js/main.js"></script>
+  <script src="/static/js/current-player.js"></script>
+  <script src="/static/js/controls.js"></script>
+
   <!-- scripts concatenated and minified via ant build script -->
   <script src="/static/mobile/js/mylibs/helper.js"></script>
   <!-- end concatenated and minified scripts-->
-  
+
   <script>
     MBP.scaleFix();
     yepnope({
@@ -394,7 +400,7 @@
   </script>
 
   <!-- <script src="https://getfirebug.com/firebug-lite.js"></script> -->
-  
+
   <script>
     var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
