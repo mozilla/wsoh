@@ -20,8 +20,6 @@ $(document).ready(function(){
     }
     
     now.receiveUpdateVolume = function(volume){
-        console.debug('volume');
-        console.debug(volume);
+        $('#song-player').jPlayer("volume", volume);
     }
 });
-
