@@ -16,9 +16,10 @@ $(document).ready(function(){
     }
     now.receiveUpdatePlaylist = function(data) {
         console.debug('playlist');
+        data = JSON.parse(data);
         audioPlaylist.playlistUpdate(data.playlist, data.current);
     }
-    
+
     now.receiveUpdateVolume = function(volume){
         $('#song-player').jPlayer("volume", volume);
     }
