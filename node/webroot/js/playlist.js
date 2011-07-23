@@ -69,7 +69,10 @@ var Playlist = function(instance, playlist, options) {
 			// $(this).blur();
 			return false;
 		});
-		
+		var volume_slider = $('#volume-slider')
+		volume_slider.mouseup(function(){
+		    now.updateVolume(volume_slider.val()/100)
+		});
 		$("#song-play-pause").click(function () {
 			if(self.renderjPlayer) {
 				if($(this).hasClass('paused')) {
