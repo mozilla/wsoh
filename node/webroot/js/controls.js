@@ -1,15 +1,15 @@
 $(document).ready(function(){
     now.receivePause = function() {
-        console.debug('pause');
+        audioPlaylist.playlistPause()
     }
     now.receivePlay = function() {
-        console.debug('play');
+        audioPlaylist.playlistPlay()
     }
     now.receiveNextSong = function() {
-        console.debug('next');
+        audioPlaylist.playlistNext()
     }
     now.receivePreviousSong = function() {
-        console.debug('previous');
+        audioPlaylist.playlistPrev()
     }
     now.receiveUpdateTime = function(seconds) {
         console.debug(seconds);
