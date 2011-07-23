@@ -65,7 +65,7 @@ everyone.now.changeThePlayerTo = function(playerId) {
     var group = nowjs.getGroup(this.now.roomID);
     nowjs.getClient(playerId, function() {
         this.now.youAreThePlayerNow();
-        group.now.player = playerId;
+        group.player = playerId;
         util.log("New player: " + playerId);
     });
 }
@@ -89,8 +89,16 @@ everyone.on('disconnect', function() {
 function joinGroup(groupId, client) {
     // Add a user to a group
     var group = nowjs.getGroup(groupId);
-    if (!group.now.player) {
-        group.now.player = client.user.clientId;
+    if (!group.player) {
+        group.player = client.user.clientId;
+        group.now.amITheCurrentPlayer = function() {
+            if (nowjs.getGroup(this.now.roomID).player == this.user.clientId) {
+                this.now.youAreTheCurrentPlayer();
+            }
+            else {
+                this.now.youAreNotTheCurrentPlayer();
+            }
+        }
     }
     group.addUser(client.user.clientId);
     util.log("Client " + client.user.clientId + " was added to group " + groupId);

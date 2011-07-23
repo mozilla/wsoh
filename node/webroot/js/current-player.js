@@ -13,6 +13,18 @@ $(document).ready(function() {
         alert("Yeah I'm the player now!");
     }
 
+    now.youAreTheCurrentPlayer = function() {
+        log("youAreTheCurrentPlayer");
+        // Do stuff that say you're the current player
+        alert("I am the current player.");
+    }
+
+    now.youAreNotTheCurrentPlayer = function() {
+        log("youAreNotTheCurrentPlayer");
+        // Do stuff that say you're not the current player
+        alert("I am NOT the current player.");
+    }
+
     $("#become-player").click(function () {
         log("clicked iWantToBeThePlayer");
         now.iWantToBeThePlayer();
