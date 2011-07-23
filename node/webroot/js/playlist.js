@@ -69,7 +69,10 @@ var Playlist = function(instance, playlist, options) {
 			// $(this).blur();
 			return false;
 		});
-		
+		var volume_slider = $('#volume-slider')
+		volume_slider.mouseup(function(){
+		    now.updateVolume(volume_slider.val()/100)
+		});
 		$("#song-play-pause").click(function () {
 			if(self.renderjPlayer) {
 				if($(this).hasClass('paused')) {
@@ -81,9 +84,9 @@ var Playlist = function(instance, playlist, options) {
 			return false;
 		});
 	
-		$(".song-listing").live("click", function () {
+		$("#song-list .song-listing").live("click", function () {
 			self.playlistChange($(this).attr('data-index'));
-			now.updatePlaylist({ playlist: self.playlist, current: self.current });
+			now.updatePlaylist(JSON.stringify({ playlist: self.playlist, current: self.current }));
 			return false;
 		});
 	}
@@ -220,7 +223,9 @@ Playlist.prototype = {
 	},
 	playlistEnable: function () {
 		this.allowedToPlay = true;
-		$(this.cssSelector.jPlayer).jPlayer(this.options);
+		if(this.renderjPlayer) {
+			$(this.cssSelector.jPlayer).jPlayer(this.options);
+		}
 		this.displayPlaylist();
 	},
 	playlistDisable: function () {
@@ -234,4 +239,4 @@ Playlist.prototype = {
 function continueUpdatingButtons() {
 	audioPlaylist.updateButtons();
 	setTimeout("continueUpdatingButtons()", 200);
-}
+};

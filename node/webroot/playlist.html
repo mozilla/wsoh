@@ -20,7 +20,8 @@
 						<div id="song-progress-outer-wrapper"><div class="time" id="song-so-far">0:00</div><div id="song-progress-inner-wrapper"><div id="song-progress-wrapper"><div id="song-progress-played" style="width: 0%;">&nbsp;</div></div></div><div class="time" id="song-duration">0:00</div></div>
 					</div>
 					<div id="song-under-controls">
-						<div id="controls-wrapper"><a href="#" id="song-previous" class="jp-previous">&nbsp;</a><a href="#" id="song-play-pause" class="paused">&nbsp;</a><a href="#" id="song-next" class="jp-next">&nbsp;</a></div>
+					    <input id="volume-slider" type="range"  min="0" max="100" />
+						<div id="controls-wrapper"><a href="#" id="song-previous" class="jp-previous">&nbsp;</a><a href="#" id="song-play-pause" class="paused">&nbsp;</a><a href="#" id="song-next" class="jp-next">&nbsp;</a><a href="#" id="search-open" class="">&nbsp;</a></div>
 					</div>
 					<div id="song-player" style="display: none;"></div>
 				</div>
@@ -33,9 +34,11 @@
 				</div>
 			</div>
 		</div>
+		<div id="search-box">asdf</div>
 		<script src="/static/lib/jquery.min.js"></script>
 		<script type="text/javascript" charset="utf-8" src="/static/lib/jquery.jplayer.min.js"></script>
 		<script type="text/javascript" charset="utf-8" src="/static/js/playlist.js"></script>
+		<script type="text/javascript" charset="utf-8" src="/static/js/search.js"></script>
 		<script type="text/javascript">
 			// lets do this shit
 			var audioPlaylist = new Playlist("song-player", [
@@ -76,6 +79,5 @@
         <script src="/static/js/main.js"></script>
         <script src="/static/js/controls.js"></script>
         <script src="/static/js/current-player.js"></script>
-        <script src="/nowjs/now.js"></script>
 	</body>
 </html>

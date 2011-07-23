@@ -71,6 +71,7 @@ everyone.now.iWantToBeThePlayer = function() {
 
 everyone.now.changeThePlayerTo = function(playerId) {
     util.log("changeThePlayerTo: " + playerId);
+    this.now.youAreNotTheCurrentPlayer();
     var group = nowjs.getGroup(this.now.roomID);
     nowjs.getClient(playerId, function() {
         this.now.youAreThePlayerNow();
@@ -101,6 +102,9 @@ function joinGroup(groupId, client) {
 
     if (!group.player) {
         group.player = client.user.clientId;
+        nowjs.getClient(group.player, function() {
+            this.now.youAreTheCurrentPlayer();
+        });
     }
 
     util.log(group.player);
