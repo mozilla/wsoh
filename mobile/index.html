@@ -1,0 +1,398 @@
+﻿<!doctype html>
+<!--[if IEMobile 7 ]>    <html class="no-js iem7" manifest="default.appcache?v=1"> <![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js" manifest="default.appcache?v=1"> <!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/h/apple-touch-icon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/m/apple-touch-icon.png">
+  <link rel="apple-touch-icon-precomposed" href="img/l/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="img/l/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes" /> 
+  <meta name="apple-touch-fullscreen" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-startup-image" href="img/l/splash.png">
+  <link href='http://fonts.googleapis.com/css?family=Rosario&v2' rel='stylesheet' type='text/css'>
+  <meta http-equiv="cleartype" content="on">
+  <link rel="stylesheet" href="css/style.css?v=1">
+  <style>
+  	body, html {
+  		font-family: 'Rosario', Helvetica, Arial, sans-serif;
+  		color: #fff;
+  		background: #222222;
+  		text-shadow: 0px 0px 3px #000;
+  		height:100%;
+		overflow-x:hidden;
+		font-size: .75 em;
+  	}
+  	
+  	#header-wrapper {
+	background: #333 url(img/linen.png);
+	width: 100%;
+	height: 15%;
+	margin: 0px 0px;
+	z-index: 1000;
+	padding: 10px 2px;
+	-webkit-box-shadow:0px 0px 1.5em #000; 
+	-moz-box-shadow: 0px 0px 1.5em #000; 
+	box-shadow:0px 0px 1.5em #000
+	
+	}
+	
+	#header-wrapper h1 {
+		text-align:center;
+		margin: auto;
+		font-size: 1.5em;
+	}
+	
+	#main {
+		position:relative;
+		top:.5em;
+		width: 40em;
+		height: 25em;
+		margin: 0px auto;
+		overflow: hidden;
+	}
+	
+	#detect-swipe {
+		position: absolute;
+		width:100%;
+		height: 100%;
+		z-index: 10;
+	}
+	
+	#footer {
+		position: relative;
+		top: 1em;	
+	}
+	
+	.album-art {
+		-webkit-transition: all 1s ease-in-out;
+		-moz-transition: all 1s ease-in-out;
+		-o-transition: all 1s ease-in-out;
+		-ms-transition: all 1s ease-in-out;
+		transition: all 1s ease-in-out;
+	}
+	
+	.off-left {
+		position:absolute;
+		left:-25em;
+		top:1em;
+		width:17em;
+		height:17em;
+		z-index: 5;
+		background: #000 url('img/art_2.jpg');
+		background-size: 17em 17em;
+		-webkit-box-shadow:0px 0px 1em #000; 
+		-moz-box-shadow: 0px 0px 1em #000; 
+		box-shadow:0px 0px 1em #000;
+	}
+	
+	.current {
+		position:absolute;
+		left:0px;
+		top:1em;
+		width:17em;
+		height:17em;
+		z-index: 5;
+		background: #000 url('img/art_2.jpg');
+		background-size: 17em 17em;
+		-webkit-box-shadow:0px 0px 1em #000; 
+		-moz-box-shadow: 0px 0px 1em #000; 
+		box-shadow:0px 0px 1em #000; 
+	}
+	.next {
+		position:absolute;
+		left:8em;
+		top:2em;
+		width:13em;
+		height:13em;
+		z-index: 4;
+		background-size: 13em 13em;
+		-webkit-box-shadow:0px 0px 1.5em #000; 
+		-moz-box-shadow: 0px 0px 1.5em #000; 
+		box-shadow:0px 0px 1.5em #000; 
+	}
+	.next2nd {
+		position:absolute;
+		left:14em;
+		top:3.5em;
+		width:10em;
+		height:10em;
+		z-index: 3;
+		background: #000 url('img/art_3.jpg');
+		background-size: 10em 10em;
+		-webkit-box-shadow:0px 0px 1.5em #000; 
+		-moz-box-shadow: 0px 0px 1.5em #000; 
+		box-shadow:0px 0px 1.5em #000;  
+	}
+	
+	.off-right {
+		position:absolute;
+		left:20em;
+		top:3.5em;
+		width:7em;
+		height:7em;
+		z-index: 2;
+		background: #000 url('img/art_3.jpg');
+		background-size: 7em 7em;
+		-webkit-box-shadow:0px 0px 1.5em #000; 
+		-moz-box-shadow: 0px 0px 1.5em #000; 
+		box-shadow:0px 0px 1.5em #000;  
+	}
+	
+	#song {
+		position: absolute;
+		top: 7.3em;
+		left: 0em;
+		font-size: 2.5em;
+		z-index: 6; 	
+	}
+	
+	#artist {
+		position: absolute;
+		top: 10.3em;
+		left: 0em;
+		font-size: 2.0em;
+		z-index: 6; 	
+	}
+	
+	#album-name {
+		position: absolute;
+		top: 12.6em;
+		left: 0em;
+		font-size: 1.8em;
+		z-index: 6; 	
+	}
+	
+	#song-under-controls {
+		width: 10em;
+		margin: auto;	
+	}
+	#song-under-controls a {
+       background: url(img/controls.png) center 5px no-repeat;
+	}
+	
+	#song-under-controls a#song-play-pause {}
+	
+	#song-under-controls a#song-play-pause.paused {
+	       background-position: center 5px, 0 0;
+	}
+	
+	#song-under-controls a#song-previous {
+	       background-position: center -46px, 0 0;
+	}
+	
+	#song-under-controls a#song-next {
+	       background-position: center -75px, 0 0;
+	}
+	#song-under-controls a {
+       display: inline-block;
+       color: #fff;
+       padding: 8px 10px;
+       text-indent: -9999px;
+       background: #777777;
+       background: url(img/cntrols.png) center -20px no-repeat, -moz-linear-gradient(top, #777777 0%, #444444 100%);
+       background: url(img/controls.png) center -20px no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#777777), color-stop(100%,#444444));
+       background: url(img/controls.png) center -20px no-repeat, -webkit-linear-gradient(top, #777777 0%,#444444 100%);
+       background: url(img/controls.png) center -20px no-repeat, -o-linear-gradient(top, #777777 0%,#444444 100%);
+       background: url(img/controls.png) center -20px no-repeat, -ms-linear-gradient(top, #777777 0%,#444444 100%);
+       background: url(img/controls.png) center -20px no-repeat, linear-gradient(top, #777777 0%,#444444 100%);
+       border-left: 1px solid #666;
+       border-right: 1px solid #000;
+       width: 20px;
+	}
+		
+	#song-under-controls a#song-play-pause {}
+	
+	#song-under-controls a#song-play-pause.paused {
+	       background-position: center -20px, 0 0;
+	}
+	
+	#song-under-controls a#song-previous {
+	       background-position: center -46px, 0 0;
+	}
+	
+	#song-under-controls a#song-next {
+	       background-position: center -75px, 0 0;
+	}
+	
+	#song-under-controls a:first-child {
+	       -webkit-border-top-left-radius: 5px;
+	       -webkit-border-bottom-left-radius: 5px;
+	       -moz-border-radius-topleft: 5px;
+	       -moz-border-radius-bottomleft: 5px;
+	       border-top-left-radius: 5px;
+	       border-bottom-left-radius: 5px;
+	}
+	
+	#song-under-controls a:last-child {
+	       -webkit-border-top-right-radius: 5px;
+	       -webkit-border-bottom-right-radius: 5px;
+	       -moz-border-radius-topright: 5px;
+	       -moz-border-radius-bottomright: 5px;
+	       border-top-right-radius: 5px;
+	       border-bottom-right-radius: 5px;
+	       border-right: none;
+	}
+  </style>
+  <script src="js/libs/modernizr-custom.js"></script>
+  <script>
+  	function init() {
+  		new MBP.fastButton(document.getElementById('song-next'), function() {next()});
+  		new MBP.fastButton(document.getElementById('song-previous'), function() {previous()});
+  		addSwipeListener(document.getElementById('detect-swipe'), function(e) {
+  			if (e=="right") {
+  				previous();
+  			} else {
+  				next();
+  			}
+  		});
+  	}
+  	function next() {
+  		document.getElementsByClassName('current')[0].setAttribute('class','off-left album-art');
+  		document.getElementsByClassName('next')[0].setAttribute('class','current album-art')
+  		document.getElementsByClassName('next2nd')[0].setAttribute('class','next album-art')
+  		document.getElementsByClassName('off-right')[0].setAttribute('class','next2nd album-art')
+  	}
+  	
+  	function previous() {
+		document.getElementsByClassName('next2nd')[0].setAttribute('class','off-right album-art')
+  		document.getElementsByClassName('next')[0].setAttribute('class','next2nd album-art')
+  		document.getElementsByClassName('current')[0].setAttribute('class','next album-art')
+  		document.getElementsByClassName('off-left')[0].setAttribute('class','current album-art');
+  		
+  		//update playlist
+  	}
+  	
+  	
+  	function addSwipeListener(el, listener)
+	{
+	 var startX;
+	 var dx;
+	 var direction;
+	 
+	 function cancelTouch()
+	 {
+	  el.removeEventListener('touchmove', onTouchMove);
+	  el.removeEventListener('touchend', onTouchEnd);
+	  startX = null;
+	  startY = null;
+	  direction = null;
+	 }
+	 
+	 function onTouchMove(e)
+	 {
+	  if (e.touches.length > 1)
+	  {
+	   cancelTouch();
+	  }
+	  else
+	  {
+	   dx = e.touches[0].pageX - startX;
+	   var dy = e.touches[0].pageY - startY;
+	   if (direction == null)
+	   {
+	    direction = dx;
+	    e.preventDefault();
+	   }
+	   else if ((direction < 0 && dx > 0) || (direction > 0 && dx < 0) || Math.abs(dy) > 15)
+	   {
+	    cancelTouch();
+	   }
+	  }
+	 }
+	
+	 function onTouchEnd(e)
+	 {
+	  cancelTouch();
+	  if (Math.abs(dx) > 50)
+	  {
+	   listener({ target: el, direction: dx > 0 ? 'right' : 'left' });
+	  }
+	 }
+	 
+	 function onTouchStart(e)
+	 {
+	  if (e.touches.length == 1)
+	  {
+	   startX = e.touches[0].pageX;
+	   startY = e.touches[0].pageY;
+	   el.addEventListener('touchmove', onTouchMove, false);
+	   el.addEventListener('touchend', onTouchEnd, false);
+	  }
+	 }
+	 
+	 el.addEventListener('touchstart', onTouchStart, false);
+	}
+  	/mobile/i.test(navigator.userAgent) && !location.hash && setTimeout(function () {  if (!pageYOffset) window.scrollTo(0, 1);}, 1000);
+  </script>
+</head>
+
+<body onload="init()">
+
+  <div id="container">
+    <div id="header-wrapper">
+		<h1>Social HTML5 Music Player</h1>
+    </div>
+    <div id="main" role="main" onclick="">
+    <div id="detect-swipe"></div>
+      <div class="current album-art" style="background: #000 url('img/art_1.png')"></div>
+      <div class="next album-art" style="background: #000 url('img/art_2.jpg');" ></div>
+      <div class="next2nd album-art" style="background: #000 url('img/art_3.jpg');"></div>
+      <div class="off-right album-art" style="background: #000 url('img/art_1.png');"></div>
+      <div id="info">
+      	<div id="song">
+      		S and M
+      	</div>
+      	<div id="artist">
+      		Rihanna
+      	</div>
+      	<div id="album-name">
+      		Good girl gone bad
+      	</div>
+      	
+      </div>
+    </div>
+    
+    <div id="footer">
+		<div id="song-under-controls">
+		<div id="controls-wrapper">
+			<a href="#" id="song-previous">&nbsp;</a><a href="#" id="song-play-pause" class="paused">&nbsp;</a><a href="#" id="song-next">&nbsp;</a>
+		</div>
+		</div>
+    </div>
+  </div> <!--! end of #container -->
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+  <script>window.jQuery || document.write("<script src='js/libs/jquery-1.5.1.min.js'>\x3C/script>")</script>
+  
+  <!-- scripts concatenated and minified via ant build script -->
+  <script src="js/mylibs/helper.js"></script>
+  <!-- end concatenated and minified scripts-->
+  
+  <script>
+    MBP.scaleFix();
+    yepnope({
+      test : Modernizr.mq('(min-width)'),
+      nope : ['js/libs/respond.min.js']
+    });
+  </script>
+
+  <!-- <script src="https://getfirebug.com/firebug-lite.js"></script> -->
+  
+  <script>
+    var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+    g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+    s.parentNode.insertBefore(g,s)}(document,"script"));
+  </script>
+
+</body>
+</html>

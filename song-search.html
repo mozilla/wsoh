@@ -20,8 +20,8 @@ $(document).ready ( function () {
 		clearTimeout(timer);
 		timer = setTimeout(function () {
 			var search = $searchBox[0].value;
-			$searchResults.fadeOut(100).html('').fadeIn(200);
-			$.get('http://localhost:4567/search?q='+search, function (response) {
+			$searchResults.fadeOut(10).html('').fadeIn(10);
+			$.('http://localhost:4567/search?q='+search, function (response) {
 				response = $.parseJSON(response);
 				var add=[];
 				try {
@@ -42,7 +42,9 @@ $(document).ready ( function () {
 				} catch (e) {
 					$searchResults.html("No results")
 				}
+			
 			})
+		$searchResults.html("Searching");
 		}, 300); 
 	})
 })
