@@ -157,12 +157,12 @@ Playlist.prototype = {
 		}
 	},
 	playlistPlay: function() {
-		if(this.renderjPlayer && $(this.instance).data("jPlayer").status.paused) {
+		if(this.renderjPlayer && $(this.cssSelector.interface).data("jPlayer").status.paused) {
 			$("#song-play-pause").click();
 		}
 	},
 	playlistPause: function () {
-		if(this.renderjPlayer && !$(this.instance).data("jPlayer").status.paused) {
+		if(this.renderjPlayer && !$(this.cssSelector.interface).data("jPlayer").status.paused) {
 			$("#song-play-pause").click();
 		}	
 	},
