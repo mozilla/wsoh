@@ -1,4 +1,4 @@
-var eventkeyup = function () {
+/*var eventkeyup = function () {
 	var timer,
 		$searchResults = $('#search-results'),
 		$searchBox = $('#song-search-box');
@@ -34,4 +34,4 @@ var eventkeyup = function () {
 			$searchResults.html("Searching");
 			}, 300); 
 		})
-})
+})*/

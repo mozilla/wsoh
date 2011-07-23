@@ -32,7 +32,7 @@
   			audioPlaylist.playlistNext();
   		});
   		new MBP.fastButton(document.getElementById('song-previous'), function() {
-  			audioPlaylist.playlistNext();
+  			audioPlaylist.playlistPrev();
   		});
   		addSwipeListener(document.getElementById('detect-swipe'), function(e) {
   			if (e.direction=="right") {
@@ -41,11 +41,11 @@
   				next();
   			}
   		});
-  		
+  		/*
   		var fld = document.getElementById('song-search-box');
 		if (fld.addEventListener)
 		fld.addEventListener('keyup',eventkeyup,false );
-  		
+  		*/
   		
   	}
   	
