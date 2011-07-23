@@ -108,6 +108,10 @@ body {
 	color: #aaa;
 }
 
+#song-list .song-listing:hover {
+	cursor: pointer;
+}
+
 #song-list .song-listing:last-child:hover {
 	-webkit-border-bottom-right-radius: 10px;
 	-webkit-border-bottom-left-radius: 10px;
