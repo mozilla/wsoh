@@ -1,12 +1,6 @@
   var playlist;
     function init() {
-        audioPlaylist = new Playlist("", [
-                    {"track":6,"artistID":202,"songName":"California King Bed","albumID":5224577,"albumName":"Loud (Deluxe Edition)","mp3":"http://localhost:4567/songs/28645456/play/","artworkURL":"http://static.a.gs-cdn.net/webincludes/images/default/album_250.png","artistName":"Rihanna","songID":28645456},
-                    {"track":0,"artistID":202,"songName":"S&M","albumID":152188,"albumName":"Rihanna","mp3":"http://localhost:4567/songs/28869399/play/","artworkURL":"http://static.a.gs-cdn.net/webincludes/images/default/album_250.png","artistName":"Rihanna","songID":28869399},
-                    {"track":8,"artistID":202,"songName":"Rude Boy","albumID":3525047,"albumName":"Rated R","mp3":"http://localhost:4567/songs/23559465/play/","artworkURL":"http://beta.grooveshark.com/static/amazonart/m3525047.jpg","artistName":"Rihanna","songID":23559465},
-                    {"track":4,"artistID":599869,"songName":"Blow","albumID":5478285,"albumName":"CANNIBAL","mp3":"http://localhost:4567/songs/28444991/play/","artworkURL":"http://static.a.gs-cdn.net/webincludes/images/default/album_250.png","artistName":"Kesha","songID":28444991},
-                    {"track":0,"artistID":526664,"songName":"Party Rock Anthem","albumID":5802921,"albumName":"Party Rock Anthem - Single","mp3":"http://localhost:4567/songs/29886729/play/","artworkURL":"http://static.a.gs-cdn.net/webincludes/images/default/album_250.png","artistName":"LMFAO","songID":29886729}
-                ], {});
+        audioPlaylist = new Playlist("", [], {});
         audioPlaylist.playlistInit(false); // Parameter is a boolean for autoplay.
 
         new MBP.fastButton(document.getElementById('playlist'), function(e) {
@@ -44,13 +38,13 @@
                 now.pause();
             }
         });
-        addSwipeListener(document.getElementById('detect-swipe'), function(e) {
+        /*addSwipeListener(document.getElementById('detect-swipe'), function(e) {
             if (e.direction=="right") {
                 previous();
             } else {
                 next();
             }
-        });
+        });*/
 
         var fld = document.getElementById('song-search-box');
         if (fld.addEventListener)
