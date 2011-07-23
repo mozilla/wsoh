@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Player</title>
+		<link rel="stylesheet" href="style.css" media="all">
+		<link href='http://fonts.googleapis.com/css?family=Rosario&v2' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="jquery.jplayer.min.js"></script>
+	</head>
+	<body>
+		<div id="song-header-wrapper">
+			<div id="song-header">
+				<div id="album-art">
+					<img src="" height="150" id="song-album-art" />
+				</div>
+				<div id="song-information">
+					<h1 id="song-name"></h1> <h2>by <span id="song-artist"></span></h2><br />
+					<h3 id="song-album"></h3>
+					<div id="song-controls">
+						<div id="song-progress-outer-wrapper"><div class="time" id="song-so-far">0:00</div><div id="song-progress-inner-wrapper"><div id="song-progress-wrapper"><div id="song-progress-played" style="width: 0%;">&nbsp;</div></div></div><div class="time" id="song-duration">0:00</div></div>
+					</div>
+					<div id="song-under-controls">
+						<div id="controls-wrapper"><a href="#" id="song-previous" class="jp-previous">&nbsp;</a><a href="#" id="song-play-pause" class="paused">&nbsp;</a><a href="#" id="song-next" class="jp-next">&nbsp;</a></div>
+					</div>
+					<div id="song-player" style="display: none;"></div>
+				</div>
+			</div>
+		</div>
+		<div id="content-wrapper">
+			<div id="content">
+				<div id="song-list">
+					<div class="song-listing"><div class="song-listing-index"><span>&nbsp;</span></div><div class="song-listing-album-information"><div class="song-listing-album-information-song">No Songs</div></div></div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function secondsToTime(secs)
+			{
+			    var hours = Math.floor(secs / (60 * 60));
+
+			    var divisor_for_minutes = secs % (60 * 60);
+			    var minutes = Math.floor(divisor_for_minutes / 60);
+
+			    var divisor_for_seconds = divisor_for_minutes % 60;
+			    var seconds = Math.ceil(divisor_for_seconds);
+
+			    var obj = {
+			        "h": hours,
+			        "m": minutes,
+			        "s": seconds
+			    };
+			
+				str = (obj.m || "0") + ":";
+				if(obj.s < 10 || obj.s == null || obj.s == "undefined") {
+					str += "0";
+				}
+				str += (obj.s || "0");
+			    return str;
+			};
+			
+			var Playlist = function(instance, playlist, options) {
+				var self = this;
+
+				this.instance = instance; // String: To associate specific HTML with this playlist
+				this.playlist = playlist; // Array of Objects: The playlist
+				this.options = options; // Object: The jPlayer constructor options for this playlist
+
+				this.current = 0;
+
+				this.cssId = {
+					jPlayer: "",
+					interface: "",
+					playlist: ""
+				};
+				this.cssSelector = {};
+
+				$.each(this.cssId, function(entity, id) {
+					self.cssSelector[entity] = "#" + id + self.instance;
+				});
+
+				if(!this.options.cssSelectorAncestor) {
+					this.options.cssSelectorAncestor = this.cssSelector.interface;
+				}
+
+				$(this.cssSelector.jPlayer).jPlayer(this.options);
+
+				$(".jp-previous").click(function() {
+					self.playlistPrev();
+					$(this).blur();
+					return false;
+				});
+
+				$(".jp-next").click(function() {
+					self.playlistNext();
+					$(this).blur();
+					return false;
+				});
+				
+				$("#song-play-pause").click(function() {
+					if($(this).hasClass('paused')) {
+						$(self.cssSelector.interface).jPlayer("play");
+						$(this).removeClass('paused');
+					} else {
+						$(self.cssSelector.interface).jPlayer("pause");
+						$(this).addClass('paused');
+					}
+					return false;
+				});
+			};
+			Playlist.prototype = {
+				displayPlaylist: function() {
+					var out = "";
+					$.each(this.playlist, function (index, value) {
+						console.log(value);
+						out += '<div class="song-listing"><div class="song-listing-index"><span>' + (index + 1) + '</span></div><div class="song-listing-album-art"><img src="' + value.artworkURL + '" height="35" /></div><div class="song-listing-album-information"><div class="song-listing-album-information-song">' + value.songName + '</div><div class="song-listing-album-information-artist">' + value.albumName + " by " + value.artistName + '</div></div></div>';
+					});
+					$("#song-list").html(out);
+				},
+				playlistInit: function(autoplay) {
+					if(autoplay) {
+						this.playlistChange(this.current);
+					} else {
+						this.playlistConfig(this.current);
+					}
+				},
+				playlistConfig: function(index) {
+					// $(this.cssSelector.playlist + "_item_" + this.current).removeClass("jp-playlist-current").parent().removeClass("jp-playlist-current");
+					// $(this.cssSelector.playlist + "_item_" + index).addClass("jp-playlist-current").parent().addClass("jp-playlist-current");
+					this.current = index;
+					this.displayPlaylist();
+					$(this.cssSelector.jPlayer).jPlayer("setMedia", this.playlist[this.current]);
+					$("#song-album-art").attr('src', this.playlist[this.current].artworkURL);
+					$("#song-artist").text(this.playlist[this.current].artistName);
+					$("#song-album").text(this.playlist[this.current].albumName);
+					$("#song-name").text(this.playlist[this.current].songName);
+				},
+				playlistChange: function(index) {
+					this.playlistConfig(index);
+					$(this.cssSelector.jPlayer).jPlayer("play");
+				},
+				playlistNext: function() {
+					var index = (this.current + 1 < this.playlist.length) ? this.current + 1 : 0;
+					this.playlistChange(index);
+				},
+				playlistPrev: function() {
+					var index = (this.current - 1 >= 0) ? this.current - 1 : this.playlist.length - 1;
+					this.playlistChange(index);
+				},
+				playlistAdd: function(song) {
+					this.playlist.push(song);
+				},
+				playlistUpdate: function(songs, curr) {
+					same_song = songs[curr] == this.options[this.current]
+					this.options = songs;
+					if(!same_song) {
+						this.current = curr;
+						// this.playlistChange(curr);
+					}
+				},
+				playlistPlay: function() {
+					
+				},
+				playlistPause: function () {
+					
+				},
+				playlistUpdateTime: function (seconds) {
+					
+				},
+				playlistCurrent: function () {
+					return this.playlist[this.current];
+				}
+			};
+			
+			// lets do this shit
+			var audioPlaylist = new Playlist("song-player", [
+					{"track":6,"artistID":202,"songName":"California King Bed","albumID":5224577,"albumName":"Loud (Deluxe Edition)","mp3":"http://localhost:4567/songs/28645456/play/","artworkURL":"http://static.a.gs-cdn.net/webincludes/images/default/album_250.png","artistName":"Rihanna","songID":28645456},
+					{"track":0,"artistID":202,"songName":"S&M","albumID":152188,"albumName":"Rihanna","mp3":"http://localhost:4567/songs/28869399/play/","artworkURL":"http://static.a.gs-cdn.net/webincludes/images/default/album_250.png","artistName":"Rihanna","songID":28869399},
+					{"track":8,"artistID":202,"songName":"Rude Boy","albumID":3525047,"albumName":"Rated R","mp3":"http://localhost:4567/songs/23559465/play/","artworkURL":"http://beta.grooveshark.com/static/amazonart/m3525047.jpg","artistName":"Rihanna","songID":23559465},
+					{"track":4,"artistID":599869,"songName":"Blow","albumID":5478285,"albumName":"CANNIBAL","mp3":"http://localhost:4567/songs/28444991/play/","artworkURL":"http://static.a.gs-cdn.net/webincludes/images/default/album_250.png","artistName":"Kesha","songID":28444991},
+					{"track":0,"artistID":526664,"songName":"Party Rock Anthem","albumID":5802921,"albumName":"Party Rock Anthem - Single","mp3":"http://localhost:4567/songs/29886729/play/","artworkURL":"http://static.a.gs-cdn.net/webincludes/images/default/album_250.png","artistName":"LMFAO","songID":29886729}
+				], {
+					ready: function() {
+						audioPlaylist.displayPlaylist();
+						audioPlaylist.playlistInit(false); // Parameter is a boolean for autoplay.
+					},
+					ended: function() {
+						audioPlaylist.playlistNext();
+					},
+					play: function() {
+					},
+					timeupdate: function(e) {
+						if(e.jPlayer && e.jPlayer.status) {
+							$("#song-so-far").text(secondsToTime(e.jPlayer.status.currentTime));
+							$("#song-duration").text(secondsToTime(e.jPlayer.status.duration));
+							$("#song-progress-played").css({ 'width': e.jPlayer.status.currentPercentAbsolute + "%" });
+						}
+					},
+					swfPath: "../js",
+					supplied: "oga, mp3"
+				});
+			
+			
+		</script>
+	</body>
+</html>
