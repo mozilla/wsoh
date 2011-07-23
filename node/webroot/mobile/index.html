@@ -32,6 +32,10 @@
 		overflow-x: hidden;
   	}
   	
+  	.disabled {
+  		display:none;
+  	}
+  	
   	#header-wrapper {
 	background: #333 url(img/linen.png);
 	width: 100%;
@@ -58,6 +62,14 @@
 		background-color: red;
 	}
 	
+	.nav-button {
+		width:6em;
+		height:3em;
+		margin: 1em 2em;
+		background-color:blue;
+		float:left;
+	}
+	
 	#main {
 		position:relative;
 		top:.5em;
@@ -68,8 +80,21 @@
 	}
 	
 	#song-list {
-		visibility: hidden;
-		display:none;
+		position:relative;
+		top:.5em;
+		width: 27.7em;
+		height: 25em;
+		margin: 0px auto;
+		overflow: hidden;
+	}
+	
+	#add-song{
+		position:relative;
+		top:.5em;
+		width: 27.7em;
+		height: 25em;
+		margin: 0px auto;
+		overflow: hidden;
 	}
 	
 	#detect-swipe {
@@ -224,6 +249,72 @@
 	       border-bottom-right-radius: .5em;
 	       border-right: none;
 	}
+	
+	#song-list .song-listing {
+		border-top: 1px solid #666;
+		border-bottom: 1px solid #000;
+		color: #aaa;
+	}
+	
+	#song-list .song-listing:hover {
+		cursor: pointer;
+	}
+	
+	#song-list .song-listing:last-child:hover {
+		-webkit-border-bottom-right-radius: 10px;
+		-webkit-border-bottom-left-radius: 10px;
+		-moz-border-radius-bottomright: 10px;
+		-moz-border-radius-bottomleft: 10px;
+		border-bottom-right-radius: 10px;
+		border-bottom-left-radius: 10px;	
+	}
+	
+	#song-list .song-listing-index, #song-list .song-listing-album-art, #song-list .song-listing-album-information {
+		display: inline-block;
+	}
+	
+	#song-list .song-listing-index {
+		line-height: 50px;
+		width: 50px;
+		text-align: center;
+	}
+	
+	#song-list .song-listing-album-art {
+		vertical-align: middle;
+	}
+	
+	#song-list .song-listing-album-art img {
+		-webkit-box-shadow:0 0 5px #000;
+		-moz-box-shadow: 0 0 5px #000; 
+		box-shadow:0 0 5px #000;
+	}
+	
+	#song-list .song-listing-album-information {
+		vertical-align: top;
+		margin-left: 10px;
+		margin-top: 10px;
+	}
+	
+	#song-list .song-listing-album-information-song, #song-list .song-listing-album-information-artist {
+	/*	display: inline-block;*/
+	}
+	
+	#song-list .song-listing-album-information-song {
+		margin-bottom: 2px;
+	}
+	
+	#song-list .song-listing-album-information-artist {
+		font-size: smaller;
+	}
+	
+	#song-list .song-listing:hover {
+		background: #555;
+	/*	color: #444;*/
+	}
+	
+	#song-list .song-listing:last-child {
+		border-bottom: none;
+	}
   </style>
   <script src="/static/mobile/js/libs/modernizr-custom.js"></script>
   <script src="/static/js/playlist.js"></script>
@@ -317,6 +408,7 @@
 	}
   	/mobile/i.test(navigator.userAgent) && !location.hash && setTimeout(function () {  if (!pageYOffset) window.scrollTo(0, 1);}, 1000);
   </script>
+  <script src="/static/mobile/js/script.js"></script>
 </head>
 
 <body onload="init()">
@@ -326,11 +418,15 @@
 		<h1>Social HTML5 Music Player</h1>
     </div>
     <div id="nav">
-    	<div id="now-playing"></div>
-    	<div id="playlist"></div>
-    	<div id="search"></div>
+    	<div id="now-playing" class="nav-button"></div>
+    	<div id="playlist" class="nav-button"></div>
+    	<div id="search" class="nav-button"></div>
     </div>
-    <div id="song-list"></div>
+    <div id="add-song" class="disabled">
+    	<input id="song-search-box" placeholder="Add a song!"></input>
+		<div id="search-results"> </div>
+    </div>
+    <div id="song-list" class="disabled"></div>
     <div id="main" role="main" onclick="">
     <div id="detect-swipe"></div>
       <div class="off-left album-art" style="background: #000 url('/static/mobile/img/art_2.jpg')"></div>
@@ -363,7 +459,7 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
   <script>window.jQuery || document.write("<script src='/static/mobile/js/libs/jquery-1.5.1.min.js'>\x3C/script>")</script>
-  
+  <script src="/static/mobile/js/search.js"></script>
   <!-- scripts concatenated and minified via ant build script -->
   <script src="/static/mobile/js/mylibs/helper.js"></script>
   <!-- end concatenated and minified scripts-->
