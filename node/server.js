@@ -135,7 +135,6 @@ everyone.now.play = function(){
 }
 
 everyone.now.nextSong = function(){
-    util.log("next");
     roomID = this.now.roomID;
     redis_get("playlist:"+roomID, function(data) {
         data = JSON.parse(data);
