@@ -80,8 +80,8 @@ everyone.on('connect', function() {
 
 everyone.on('disconnect', function() {
     var group = nowjs.getGroup(this.now.roomID);
-    if (group.now.player == this.user.clientId) {
-        group.now.player = null;
+    if (group.player == this.user.clientId) {
+        group.player = null;
     }
 });
 
@@ -93,6 +93,8 @@ function joinGroup(groupId, client) {
     if (!group.player) {
         group.player = client.user.clientId;
     }
+
+    util.log(group.player);
 
     if (!group.now.amITheCurrentPlayer) {
         group.now.amITheCurrentPlayer = function() {
