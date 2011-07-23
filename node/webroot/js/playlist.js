@@ -102,9 +102,14 @@ Playlist.prototype = {
 		document.getElementById("song-list").innerHTML = out;
 		out = "";
 		if(!this.renderjPlayer) {
-			document.getElementsByClassName("current")[0].style = "background #000 url('" + this.playlist[this.current].artworkURL + "')";
-			document.getElementsByClassName("current")[1].style = "background #000 url('" + this.playlist[this.current].artworkURL + "')";
-			document.getElementsByClassName("current")[2].style = "background #000 url('" + this.playlist[this.current].artworkURL + "')";
+			try {
+			console.log('disp')
+			document.getElementsByClassName("current")[0].style.background = "#000 url('" + this.playlist[this.current].artworkURL + "')";
+			document.getElementsByClassName("next")[0].style.background = "#000 url('" + this.playlist[this.current+1].artworkURL + "')";
+			document.getElementsByClassName("next2nd")[0].style.background = "#000 url('" + this.playlist[this.current+2].artworkURL + "')";
+			document.getElementsByClassName("off-left")[0].style.background = " #000 url('" + this.playlist[this.current-1].artworkURL + "')";
+			document.getElementsByClassName("off-right")[0].style.background = " #000 url('" + this.playlist[this.current+3].artworkURL + "')";
+			} catch(e){e};
 		}
 		this.updateButtons();
 	},
@@ -152,20 +157,25 @@ Playlist.prototype = {
 	playlistNext: function() {
 		var index = (this.current + 1 < this.playlist.length) ? this.current + 1 : 0;
 		if(!this.renderjPlayer) {
-			document.getElementsByClassName('current')[0].setAttribute('class','off-left album-art');
+			console.log('move');
+			document.getElementsByClassName('off-left')[0].setAttribute('class','temp album-art ');
+			document.getElementsByClassName('current')[0].setAttribute('class','off-left album-art under');
 	  		document.getElementsByClassName('next')[0].setAttribute('class','current album-art');
 	  		document.getElementsByClassName('next2nd')[0].setAttribute('class','next album-art');
 	  		document.getElementsByClassName('off-right')[0].setAttribute('class','next2nd album-art');
+	  		document.getElementsByClassName('temp')[0].setAttribute('class','off-right album-art ');
 		}
 		this.playlistChange(index);
 	},
 	playlistPrev: function() {
 		var index = (this.current - 1 >= 0) ? this.current - 1 : this.playlist.length - 1;
 		if(!this.renderjPlayer) {
-			document.getElementsByClassName('next2nd')[0].setAttribute('class','off-right album-art')
+			document.getElementsByClassName('off-right')[0].setAttribute('class','album-art temp')
+			document.getElementsByClassName('next2nd')[0].setAttribute('class','off-right album-art under')
 			document.getElementsByClassName('next')[0].setAttribute('class','next2nd album-art')
 			document.getElementsByClassName('current')[0].setAttribute('class','next album-art')
 			document.getElementsByClassName('off-left')[0].setAttribute('class','current album-art');
+			document.getElementsByClassName('temp')[0].setAttribute('class','off-left album-art')
 		}
 		this.playlistChange(index);
 	},

@@ -13,6 +13,7 @@
   			document.getElementById('main').className = "disabled";
   			document.getElementById('song-list').className = "";
   			document.getElementById('add-song').className = "disabled";
+  			myScroll = new iScroll('song-list-wrapper');
   		});
   		
   		new MBP.fastButton(document.getElementById('now-playing'), function(e) {
@@ -25,6 +26,7 @@
   			document.getElementById('main').className = "disabled";
   			document.getElementById('song-list').className = "disabled";
   			document.getElementById('add-song').className = "";
+  			myScroll = new iScroll('add-song-wrapper');
   		});	
   		
 		
@@ -32,7 +34,7 @@
   			audioPlaylist.playlistNext();
   		});
   		new MBP.fastButton(document.getElementById('song-previous'), function() {
-  			audioPlaylist.playlistNext();
+  			audioPlaylist.playlistPrev();
   		});
   		addSwipeListener(document.getElementById('detect-swipe'), function(e) {
   			if (e.direction=="right") {
@@ -41,11 +43,11 @@
   				next();
   			}
   		});
-  		
+  		/*
   		var fld = document.getElementById('song-search-box');
 		if (fld.addEventListener)
 		fld.addEventListener('keyup',eventkeyup,false );
-  		
+  		*/
   		
   	}
   	

@@ -1,15 +1,24 @@
-var eventkeyup = function () {
+/*var eventkeyup = function () {
 	var timer,
-		$searchResults = $('#search-results'),
-		$searchBox = $('#song-search-box');
-		
-		$searchBox.keyup(function () {
+		$searchResults = document.getElementById('#search-results'),
+		$searchBox = document.getElementById('song-search-box')
 			clearTimeout(timer);
 			timer = setTimeout(function () {
 				var search = $searchBox[0].value;
 				$searchResults.fadeOut(10).html('').fadeIn(10);
-				$.('http://localhost:4567/search?q='+search, function (response) {
-					response = $.parseJSON(response);
+				http = new XMLHttpRequest();
+				http.open("GET", 'http://localhost:4567/search?q='+search );
+				http.onreadystatechange=function() {
+				  if(http.readyState == 4) {
+				    alert(http.responseText);
+				  }
+				}
+				http.send(null);
+			})
+}*/
+
+/*
+ * response = $.parseJSON(response);
 					var add=[];
 					try {
 						for (var i=0,len=200;i<len;i++) { //iterates through each item of response  
@@ -33,5 +42,4 @@ var eventkeyup = function () {
 				})
 			$searchResults.html("Searching");
 			}, 300); 
-		})
-})
+ */
