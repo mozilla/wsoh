@@ -26,6 +26,14 @@ var redis_get= function(key,callback){
 var server = express.createServer();
 //Define static files
 server.use('/static',express.static(WEBROOT));
+//Define route for the homepage
+server.get('/',function(req, response){
+    fs.readFile(WEBROOT+'/index.html', function(err, data){
+        response.writeHead(200, {'Content-Type':'text/html'});
+        response.write(data);
+        response.end();
+    });
+});
 //Define route for a playlist
 server.get('/playlist/*',function(req, response){
     fs.readFile(WEBROOT+'/playlist.html', function(err, data){
