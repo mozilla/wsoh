@@ -22,5 +22,6 @@ $(document).ready(function(){
 
     now.receiveUpdateVolume = function(volume){
         $('#song-player').jPlayer("volume", volume);
+        $('#volume-slider').val(volume);
     }
 });
