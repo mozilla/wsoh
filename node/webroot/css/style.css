@@ -252,12 +252,12 @@ body {
 	padding: 8px 10px;
 	text-indent: -9999px;
 	background: #777777;
-	background: url(/static/img/control.png) center -20px no-repeat, -moz-linear-gradient(top, #777777 0%, #444444 100%);
-	background: url(/static/img/control.png) center -20px no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#777777), color-stop(100%,#444444));
-	background: url(/static/img/control.png) center -20px no-repeat, -webkit-linear-gradient(top, #777777 0%,#444444 100%);
-	background: url(/static/img/control.png) center -20px no-repeat, -o-linear-gradient(top, #777777 0%,#444444 100%);
-	background: url(/static/img/control.png) center -20px no-repeat, -ms-linear-gradient(top, #777777 0%,#444444 100%);
-	background: url(/static/img/control.png) center -20px no-repeat, linear-gradient(top, #777777 0%,#444444 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, -moz-linear-gradient(top, #777777 0%, #444444 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#777777), color-stop(100%,#444444));
+	background: url(/static/img/controls.png) center -20px no-repeat, -webkit-linear-gradient(top, #777777 0%,#444444 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, -o-linear-gradient(top, #777777 0%,#444444 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, -ms-linear-gradient(top, #777777 0%,#444444 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, linear-gradient(top, #777777 0%,#444444 100%);
 	border-left: 1px solid #666;
 	border-right: 1px solid #000;
 	width: 20px;
@@ -265,21 +265,21 @@ body {
 
 #song-under-controls a:hover {
 	background: #777777;
-	background: url(/static/img/control.png) center -20px no-repeat, -moz-linear-gradient(top, #777777 0%, #555555 100%);
-	background: url(/static/img/control.png) center -20px no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#777777), color-stop(100%,#555555));
-	background: url(/static/img/control.png) center -20px no-repeat, -webkit-linear-gradient(top, #777777 0%,#555555 100%);
-	background: url(/static/img/control.png) center -20px no-repeat, -o-linear-gradient(top, #777777 0%,#555555 100%);
-	background: url(/static/img/control.png) center -20px no-repeat, -ms-linear-gradient(top, #777777 0%,#555555 100%);
-	background: url(/static/img/control.png) center -20px no-repeat, linear-gradient(top, #777777 0%,#555555 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, -moz-linear-gradient(top, #777777 0%, #555555 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#777777), color-stop(100%,#555555));
+	background: url(/static/img/controls.png) center -20px no-repeat, -webkit-linear-gradient(top, #777777 0%,#555555 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, -o-linear-gradient(top, #777777 0%,#555555 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, -ms-linear-gradient(top, #777777 0%,#555555 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, linear-gradient(top, #777777 0%,#555555 100%);
 }
 
 #song-under-controls a:active {
-	background: url(/static/img/control.png) center -20px no-repeat, -moz-linear-gradient(top, #444444 0%, #777777 100%);
-	background: url(/static/img/control.png) center -20px no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#444444), color-stop(100%,#777777));
-	background: url(/static/img/control.png) center -20px no-repeat, -webkit-linear-gradient(top, #444444 0%,#777777 100%);
-	background: url(/static/img/control.png) center -20px no-repeat, -o-linear-gradient(top, #444444 0%,#777777 100%);
-	background: url(/static/img/control.png) center -20px no-repeat, -ms-linear-gradient(top, #444444 0%,#777777 100%);
-	background: url(/static/img/control.png) center -20px no-repeat, linear-gradient(top, #444444 0%,#777777 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, -moz-linear-gradient(top, #444444 0%, #777777 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#444444), color-stop(100%,#777777));
+	background: url(/static/img/controls.png) center -20px no-repeat, -webkit-linear-gradient(top, #444444 0%,#777777 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, -o-linear-gradient(top, #444444 0%,#777777 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, -ms-linear-gradient(top, #444444 0%,#777777 100%);
+	background: url(/static/img/controls.png) center -20px no-repeat, linear-gradient(top, #444444 0%,#777777 100%);
 	border-left: 1px solid #555;
 }
 
