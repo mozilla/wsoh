@@ -88,12 +88,6 @@ function joinGroup(groupId, client) {
     util.log("Client " + client.user.clientId + " was added to group " + groupId);
 }
 
-everyone.now.distributeMessage = function(message){
-    set_playlist(this.now.roomID, message);
-    nowjs.getGroup(this.now.roomID)
-        .now.consoleOut(message);
-}
-
 //Server side listener for global distribution
 
 everyone.on('connect', function() {
@@ -127,5 +121,14 @@ everyone.now.previousSong = function(){
 }
 
 everyone.now.updateTime = function(seconds){
-    nowjs.getGroup(this.now.roomID).now.receivePreviousSong(seconds)
+    nowjs.getGroup(this.now.roomID).now.receiveUpdateTime(seconds)
+}
+
+everyone.now.updatePlaylist = function(data){
+    set_playlist(this.now.roomID, data);
+    nowjs.getGroup(this.now.roomID).now.receiveUpdatePlaylist(data);
+}
+
+everyone.now.updateVolume = function(volume){
+    nowjs.getGroup(this.now.roomID).now.receiveUpdateVolume(volume)
 }

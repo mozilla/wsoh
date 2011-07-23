@@ -14,7 +14,7 @@ $(document).ready(function(){
   }
 
   $("#send-button").click(function(){
-    now.distributeMessage($("#text-input").val());
+    now.updatePlaylist($("#text-input").val());
     $("#text-input").val("");
   });
 });
