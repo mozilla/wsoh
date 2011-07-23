@@ -44,16 +44,16 @@ everyone.now.iWantToBeThePlayer = function() {
     var group = nowjs.getGroup(this.now.roomID);
     var clientId = this.user.clientId;
     // Check if the player asking is not already the current player
-    if (clientId !== group.now.player) {
+    if (clientId !== group.player) {
         // If there is no current player, the client becomes the player
-        if (!group.now.player) {
+        if (!group.player) {
             this.now.youAreThePlayerNow();
-            group.now.player = this.user.clientId;
+            group.player = this.user.clientId;
             util.log("New player: " + playerId);
         }
         // Otherwise ask the current player if he agrees on changing
         else {
-            nowjs.getClient(group.now.player, function() {
+            nowjs.getClient(group.player, function() {
                 this.now.someoneWantsToBeThePlayer(clientId);
             });
         }
@@ -65,7 +65,7 @@ everyone.now.changeThePlayerTo = function(playerId) {
     var group = nowjs.getGroup(this.now.roomID);
     nowjs.getClient(playerId, function() {
         this.now.youAreThePlayerNow();
-        group.now.player = playerId;
+        group.player = playerId;
         util.log("New player: " + playerId);
     });
 }
@@ -80,8 +80,8 @@ everyone.on('connect', function() {
 
 everyone.on('disconnect', function() {
     var group = nowjs.getGroup(this.now.roomID);
-    if (group.now.player == this.user.clientId) {
-        group.now.player = null;
+    if (group.player == this.user.clientId) {
+        group.player = null;
     }
 });
 
@@ -89,9 +89,24 @@ everyone.on('disconnect', function() {
 function joinGroup(groupId, client) {
     // Add a user to a group
     var group = nowjs.getGroup(groupId);
-    if (!group.now.player) {
-        group.now.player = client.user.clientId;
+
+    if (!group.player) {
+        group.player = client.user.clientId;
     }
+
+    util.log(group.player);
+
+    if (!group.now.amITheCurrentPlayer) {
+        group.now.amITheCurrentPlayer = function() {
+            if (nowjs.getGroup(this.now.roomID).player == this.user.clientId) {
+                this.now.youAreTheCurrentPlayer();
+            }
+            else {
+                this.now.youAreNotTheCurrentPlayer();
+            }
+        }
+    }
+
     group.addUser(client.user.clientId);
     util.log("Client " + client.user.clientId + " was added to group " + groupId);
 }
