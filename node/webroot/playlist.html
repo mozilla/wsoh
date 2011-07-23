@@ -11,7 +11,7 @@
 		<div id="song-header-wrapper">
 			<div id="song-header">
 				<div id="album-art">
-					<img src="" height="150" id="song-album-art" />
+					<img src="http://static.a.gs-cdn.net/webincludes/images/default/album_250.png" height="150" id="song-album-art" />
 				</div>
 				<div id="song-information">
 					<h1 id="song-name"></h1> <h2>by <span id="song-artist"></span></h2><br />
@@ -34,20 +34,21 @@
 				</div>
 			</div>
 		</div>
-		<div id="search-box">asdf</div>
+		<div id="search-box">
+			<div id="search-header">
+				<h1>Search</h1>
+				<input type="text" id="search-field" /><a href="#" id="search-cancel">Cancel</a>
+			</div>
+			<div id="search-results">&nbsp;
+			</div>
+		</div>
 		<script src="/static/lib/jquery.min.js"></script>
 		<script type="text/javascript" charset="utf-8" src="/static/lib/jquery.jplayer.min.js"></script>
 		<script type="text/javascript" charset="utf-8" src="/static/js/playlist.js"></script>
 		<script type="text/javascript" charset="utf-8" src="/static/js/search.js"></script>
 		<script type="text/javascript">
 			// lets do this shit
-			var audioPlaylist = new Playlist("song-player", [
-					{"track":6,"artistID":202,"songName":"California King Bed","albumID":5224577,"albumName":"Loud (Deluxe Edition)","mp3":"http://localhost:4567/songs/28645456/play/","artworkURL":"http://static.a.gs-cdn.net/webincludes/images/default/album_250.png","artistName":"Rihanna","songID":28645456},
-					{"track":0,"artistID":202,"songName":"S&M","albumID":152188,"albumName":"Rihanna","mp3":"http://localhost:4567/songs/28869399/play/","artworkURL":"http://static.a.gs-cdn.net/webincludes/images/default/album_250.png","artistName":"Rihanna","songID":28869399},
-					{"track":8,"artistID":202,"songName":"Rude Boy","albumID":3525047,"albumName":"Rated R","mp3":"http://localhost:4567/songs/23559465/play/","artworkURL":"http://beta.grooveshark.com/static/amazonart/m3525047.jpg","artistName":"Rihanna","songID":23559465},
-					{"track":4,"artistID":599869,"songName":"Blow","albumID":5478285,"albumName":"CANNIBAL","mp3":"http://localhost:4567/songs/28444991/play/","artworkURL":"http://static.a.gs-cdn.net/webincludes/images/default/album_250.png","artistName":"Kesha","songID":28444991},
-					{"track":0,"artistID":526664,"songName":"Party Rock Anthem","albumID":5802921,"albumName":"Party Rock Anthem - Single","mp3":"http://localhost:4567/songs/29886729/play/","artworkURL":"http://static.a.gs-cdn.net/webincludes/images/default/album_250.png","artistName":"LMFAO","songID":29886729}
-				], {
+			var audioPlaylist = new Playlist("song-player", [], {
 					ready: function() {
 						audioPlaylist.displayPlaylist();
 						audioPlaylist.playlistInit(false); // Parameter is a boolean for autoplay.
@@ -66,12 +67,13 @@
 							now.updateTime({ sofar: secondsToTime(e.jPlayer.status.currentTime), duration: secondsToTime(e.jPlayer.status.duration), progress: e.jPlayer.status.currentPercentAbsolute + "%" });
 						}
 					},
+					error: function (e) {
+						alert("We're sorry, but Grooveshark is being cranky and won't let us play this song");
+					},
 					swfPath: "../js",
 					supplied: "oga, mp3"
 				});
-			if(audioPlaylist.renderjPlayer) {
-				continueUpdatingButtons();
-			}
+			continueUpdatingButtons();
 			
 		</script>
 		<script src="/nowjs/now.js"></script>

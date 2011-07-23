@@ -17,7 +17,11 @@ $(document).ready(function(){
     now.receiveUpdatePlaylist = function(data) {
         console.debug('playlist');
         data = JSON.parse(data);
-        audioPlaylist.playlistUpdate(data.playlist, data.current);
+		if(data == null) {
+			audioPlaylist.playlistUpdate([], 0);
+		} else {
+	        audioPlaylist.playlistUpdate(data.playlist, data.current);
+		}
     }
 
     now.receiveUpdateVolume = function(volume){
