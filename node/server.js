@@ -1,14 +1,14 @@
 ﻿var
-  path = require('path'),
-  fs = require('fs'),
-  nowjs = require("now"),
-  express = require("express"),
-  redislib = require("redis"),
-  util = require("util"),
+    path = require('path'),
+    fs = require('fs'),
+    nowjs = require("now"),
+    express = require("express"),
+    redislib = require("redis"),
+    util = require("util"),
 
-  PORT = 8003,
-  WEBROOT = path.join(path.dirname(__filename), '/webroot'),
-  redis = redislib.createClient();
+    PORT = 8003,
+    WEBROOT = path.join(path.dirname(__filename), '/webroot'),
+    redis = redislib.createClient();
 
 //Error handler for REDIS
 redis.on("error", function (err) {
@@ -17,9 +17,9 @@ redis.on("error", function (err) {
 
 //Asyncronous Get Wrapper for redis
 var redis_get= function(key,callback){
-  redis.GET(key, function(err, res){
-    callback(res);
-  });
+    redis.GET(key, function(err, res){
+        callback(res);
+    });
 }
 
 //Create express server
@@ -28,11 +28,11 @@ var server = express.createServer();
 server.use('/static',express.static(WEBROOT));
 //Define route for a playlist
 server.get('/playlist/*',function(req, response){
-  fs.readFile(WEBROOT+'/index.html', function(err, data){
-    response.writeHead(200, {'Content-Type':'text/html'});
-    response.write(data);
-    response.end();
-  });
+    fs.readFile(WEBROOT+'/index.html', function(err, data){
+        response.writeHead(200, {'Content-Type':'text/html'});
+        response.write(data);
+        response.end();
+    });
 });
 server.listen(8080);
 
@@ -44,7 +44,7 @@ var everyone = nowjs.initialize(server);
 
 //Playlist objects start with "playlist:"
 function set_playlist(ID,playlist){
-  redis.SET('playlist:'+ID,playlist);
+    redis.SET('playlist:'+ID,playlist);
 }
 
 // Add a user to a group
@@ -59,9 +59,8 @@ everyone.now.distributeMessage = function(message){
     nowjs.getGroup(this.now.roomID)
         .now.consoleOut(message);
 }
-    //~ everyone.now.printToConsole(message,this.now.roomID);
 
-//Server side listener for global distrobution
+//Server side listener for global distribution
 
 everyone.on('connect', function() {
     joinGroup(this.now.roomID, this);
