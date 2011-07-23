@@ -66,3 +66,25 @@ everyone.on('connect', function() {
     joinGroup(this.now.roomID, this);
     redis_get('playlist:'+this.now.roomID,this.now.setup)
 });
+
+
+//Owen
+everyone.now.pause = function(){
+    nowjs.getGroup(this.now.roomID).now.receivePause()
+}
+
+everyone.now.play = function(){
+    nowjs.getGroup(this.now.roomID).now.receivePlay()
+}
+
+everyone.now.nextSong = function(){
+    nowjs.getGroup(this.now.roomID).now.receiveNextSong()
+}
+
+everyone.now.previousSong = function(){
+    nowjs.getGroup(this.now.roomID).now.receivePreviousSong()
+}
+
+everyone.now.updateTime = function(seconds){
+    nowjs.getGroup(this.now.roomID).now.receivePreviousSong(seconds)
+}
