@@ -12,11 +12,12 @@ $(document).ready(function(){
         audioPlaylist.playlistPrev()
     }
     now.receiveUpdateTime = function(data) {
+		console.log(data);
         audioPlaylist.playlistUpdateTime(data);
     }
     now.receiveUpdatePlaylist = function(data) {
         console.debug('playlist');
-        $('div').text(data);
+        audioPlaylist.playlistUpdate(data.playlist, data.current);
     }
     
     now.receiveUpdateVolume = function(volume){

@@ -199,7 +199,7 @@ Playlist.prototype = {
 	},
 	playlistUpdateTime: function (data) {
 		song = this.playlistCurrent();
-		if(this.renderjPlayer && $(this.cssSelector.interface).data("jPlayer")) {
+		if(this.renderjPlayer) {
 			$("#song-so-far").text(data.sofar);
 			$("#song-duration").text(data.duration);
 			$("#song-progress-played").css({ 'width':  data.progress });
