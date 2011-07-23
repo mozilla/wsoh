@@ -60,12 +60,15 @@
 							$("#song-duration").text(secondsToTime(e.jPlayer.status.duration));
 							$("#song-progress-played").css({ 'width': e.jPlayer.status.currentPercentAbsolute + "%" });
 							audioPlaylist.updateButtons();
+							now.updateTime({ sofar: secondsToTime(e.jPlayer.status.currentTime), duration: secondsToTime(e.jPlayer.status.duration), progress: e.jPlayer.status.currentPercentAbsolute + "%" });
 						}
 					},
 					swfPath: "../js",
 					supplied: "oga, mp3"
 				});
-			continueUpdatingButtons();
+			if(audioPlaylist.renderjPlayer) {
+				continueUpdatingButtons();
+			}
 			
 		</script>
 		<script src="/nowjs/now.js"></script>

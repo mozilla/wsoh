@@ -11,8 +11,8 @@ $(document).ready(function(){
     now.receivePreviousSong = function() {
         audioPlaylist.playlistPrev()
     }
-    now.receiveUpdateTime = function(seconds) {
-        console.debug(seconds);
+    now.receiveUpdateTime = function(data) {
+        console.debug(data);
     }
     now.receiveUpdatePlaylist = function(data) {
         console.debug('playlist');
