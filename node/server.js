@@ -8,45 +8,37 @@
 
     PORT = 8003,
     WEBROOT = path.join(path.dirname(__filename), '/webroot'),
-    redis = redislib.createClient();
+    redis = redislib.createClient(),
+    nowjs = require("now");
 
-//Error handler for REDIS
-redis.on("error", function (err) {
-    console.log("Redis connection error to " + redis.host + ":" + redis.port + " - " + err);
-});
 
-//Asyncronous Get Wrapper for redis
-var redis_get= function(key,callback){
-    redis.GET(key, function(err, res){
-        callback(res);
-    });
-}
 
 //Create express server
 var server = express.createServer();
 //Define static files
 server.use('/static',express.static(WEBROOT));
-//Define route for a playlist
-server.get('/playlist/*',function(req, response){
+//Define route for the homepage
+server.get('/',function(req, response){
     fs.readFile(WEBROOT+'/index.html', function(err, data){
         response.writeHead(200, {'Content-Type':'text/html'});
         response.write(data);
         response.end();
     });
 });
+//Define route for a playlist
+server.get('/playlist/*',function(req, response){
+    fs.readFile(WEBROOT+'/playlist.html', function(err, data){
+        response.writeHead(200, {'Content-Type':'text/html'});
+        response.write(data);
+        response.end();
+    });
+});
 server.listen(8080);
-
-//Setup nowjs
-var nowjs = require("now");
 var everyone = nowjs.initialize(server);
 
-//#####INTERESTING STUFF STARTS BETLOW#####//
 
-//Playlist objects start with "playlist:"
-function set_playlist(ID,playlist){
-    redis.SET('playlist:'+ID,playlist);
-}
 
+//CHANGE OWNERSHIP
 everyone.now.iWantToBeThePlayer = function() {
     util.log("iWantToBeThePlayer");
     var group = nowjs.getGroup(this.now.roomID);
@@ -78,24 +70,9 @@ everyone.now.changeThePlayerTo = function(playerId) {
     });
 }
 
-// Add a user to a group
-function joinGroup(groupId, client) {
-    var group = nowjs.getGroup(groupId);
-    if (!group.now.player) {
-        group.now.player = client.user.clientId;
-    }
-    group.addUser(client.user.clientId);
-    util.log("Client " + client.user.clientId + " was added to group " + groupId);
-}
 
-everyone.now.distributeMessage = function(message){
-    set_playlist(this.now.roomID, message);
-    nowjs.getGroup(this.now.roomID)
-        .now.consoleOut(message);
-}
 
-//Server side listener for global distribution
-
+//Connect and disconnect functions, group managers
 everyone.on('connect', function() {
     joinGroup(this.now.roomID, this);
     redis_get('playlist:'+this.now.roomID,this.now.setup)
@@ -109,7 +86,18 @@ everyone.on('disconnect', function() {
 });
 
 
-//Owen
+function joinGroup(groupId, client) {
+    // Add a user to a group
+    var group = nowjs.getGroup(groupId);
+    if (!group.now.player) {
+        group.now.player = client.user.clientId;
+    }
+    group.addUser(client.user.clientId);
+    util.log("Client " + client.user.clientId + " was added to group " + groupId);
+}
+
+
+//API
 everyone.now.pause = function(){
     nowjs.getGroup(this.now.roomID).now.receivePause()
 }
@@ -127,5 +115,32 @@ everyone.now.previousSong = function(){
 }
 
 everyone.now.updateTime = function(seconds){
-    nowjs.getGroup(this.now.roomID).now.receivePreviousSong(seconds)
+    nowjs.getGroup(this.now.roomID).now.receiveUpdateTime(seconds)
 }
+
+everyone.now.updatePlaylist = function(data){
+    set_playlist(this.now.roomID, data);
+    nowjs.getGroup(this.now.roomID).now.receiveUpdatePlaylist(data);
+}
+
+everyone.now.updateVolume = function(volume){
+    nowjs.getGroup(this.now.roomID).now.receiveUpdateVolume(volume)
+}
+
+//REDIS
+redis.on("error", function (err) {
+    console.log("Redis connection error to " + redis.host + ":" + redis.port + " - " + err);
+});
+
+
+var redis_get= function(key,callback){
+    //Asyncronous Get Wrapper for redis
+    redis.GET(key, function(err, res){
+        callback(res);
+    });
+}
+
+function set_playlist(ID,playlist){
+    redis.SET('playlist:'+ID,playlist);
+}
+

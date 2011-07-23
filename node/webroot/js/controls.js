@@ -11,8 +11,17 @@ $(document).ready(function(){
     now.receivePreviousSong = function() {
         console.debug('previous');
     }
-    now.receivePreviousSong = function(seconds) {
+    now.receiveUpdateTime = function(seconds) {
         console.debug(seconds);
+    }
+    now.receiveUpdatePlaylist = function(data) {
+        console.debug('playlist');
+        $('div').text(data);
+    }
+    
+    now.receiveUpdateVolume = function(volume){
+        console.debug('volume');
+        console.debug(volume);
     }
 });
 
