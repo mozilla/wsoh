@@ -8,17 +8,21 @@ $(document).ready(function() {
 
     now.youAreThePlayerNow = function() {
         // Do stuff that make you the player now
-        audioPlaylist.do();
+        audioPlaylist.playlistEnable();
     }
 
     now.youAreTheCurrentPlayer = function() {
         // Do stuff that say you're the current player
-        alert("I am the current player.");
+        if (!audioPlaylist.allowedToPlay) {
+            audioPlaylist.playlistEnable();
+        }
     }
 
     now.youAreNotTheCurrentPlayer = function() {
         // Do stuff that say you're not the current player
-        alert("I am NOT the current player.");
+        if (audioPlaylist.allowedToPlay) {
+            audioPlaylist.playlistDisable();
+        }
     }
 
     $("#become-player").click(function () {
