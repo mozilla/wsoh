@@ -33,6 +33,15 @@ server.get('/playlist/*',function(req, response){
         response.end();
     });
 });
+
+//Define route for a playlist
+server.get('/mobile/*',function(req, response){
+    fs.readFile(WEBROOT+'/mobile/index.html', function(err, data){
+        response.writeHead(200, {'Content-Type':'text/html'});
+        response.write(data);
+        response.end();
+    });
+});
 server.listen(8080);
 var everyone = nowjs.initialize(server);
 
