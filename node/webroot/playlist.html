@@ -3,7 +3,7 @@
 <html>
 
 	<head>
-		<title>Player</title>
+		<title>Musique</title>
 		<link rel="stylesheet" href="/static/css/style.css" media="all">
 		<link href='http://fonts.googleapis.com/css?family=Rosario&v2' rel='stylesheet' type='text/css'>
 	</head>
@@ -69,6 +69,9 @@
 					},
 					error: function (e) {
 						alert("We're sorry, but Grooveshark is being cranky and won't let us play this song");
+						if(audioPlaylist.playlist.length > 1) {
+							audioPlaylist.playlistNext();
+						}
 					},
 					swfPath: "../js",
 					supplied: "oga, mp3"
