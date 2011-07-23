@@ -338,3 +338,7 @@ body {
 	background: white;
 	width: 800px;
 }
+
+#volume-slider{
+    margin-right: 275px;
+}
