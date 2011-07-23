@@ -1,0 +1,57 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script> 
+<style>
+	.song-list-item {
+		padding: 10px;
+		margin: 10px;
+		font-size: 12px;
+		background-color: red;
+	}
+</style>
+
+<script>
+$(document).ready ( function () {
+	var timer,
+	$searchResults = $('#search-results'),
+	$searchBox = $('#song-search-box');
+	
+	$searchBox.keyup(function () {
+		clearTimeout(timer);
+		timer = setTimeout(function () {
+			var search = $searchBox[0].value;
+			$searchResults.fadeOut(100).html('').fadeIn(200);
+			$.get('http://localhost:4567/search?q='+search, function (response) {
+				response = $.parseJSON(response);
+				var add=[];
+				try {
+					for (var i=0,len=200;i<len;i++) { //iterates through each item of response  
+					//benchmark: rendering all 200 items only take 5 ms or so. slow part is ajax request
+						song = response[i];
+						//track = song.track;
+						//artistID = song.artistID;
+						songName = song.songName;
+						//albumID = song.albumID;
+						//albumName = song.albumName;
+						//artworkUrl = song.artworkUrl;
+						artistName = song.artistName;
+						//songID = song.songID
+						add.push('<div class="song-list-item">' + songName + '&nbsp;by&nbsp;' + artistName +  '</div>');
+					}
+				$searchResults.html(add.join(""));
+				} catch (e) {
+					$searchResults.html("No results")
+				}
+			})
+		}, 300); 
+	})
+})
+</script>
+</head>
+<body>
+<input id="song-search-box" placeholder="Add a song!"></input>
+<div id="search-results">
+
+</div>
+</body>
+</html>
