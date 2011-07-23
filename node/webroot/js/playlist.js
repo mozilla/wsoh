@@ -78,32 +78,6 @@ var Playlist = function(instance, playlist, options) {
 					now.pause();
 				}
 			}
-			// if(self.allowedToPlay) {
-			// 	paused = $(self.cssSelector.interface).data("jPlayer").status.paused
-			// 	if(paused) {
-			// 		if($(self.cssSelector.interface).data("jPlayer")) {
-			// 			$(self.cssSelector.interface).jPlayer("play");
-			// 		}
-			// 		$("#song-play-pause").removeClass('paused');
-			// 		now.play();
-			// 	} else {
-			// 		if($(self.cssSelector.interface).data("jPlayer")) {
-			// 			$(self.cssSelector.interface).jPlayer("pause");
-			// 		}
-			// 		$("#song-play-pause").addClass('paused');
-			// 		now.pause();
-			// 	}
-			// } else {
-			// 	if(self.renderjPlayer) {
-			// 		if($(this).hasClass('paused')) {
-			// 			now.play();
-			// 			$("#song-play-pause").removeClass('paused');
-			// 		} else {
-			// 			$("#song-play-pause").addClass('paused');
-			// 			now.pause();
-			// 		}
-			// 	}
-			// }
 			return false;
 		});
 	
@@ -240,7 +214,7 @@ Playlist.prototype = {
 		this.displayPlaylist();
 	},
 	playlistDisable: function () {
-		if(this.renderjPlayer) {
+		if(this.renderjPlayer && $(this.cssSelector.interface).data('jPlayer')) {
 			$(this.cssSelector.interface).jPlayer("destroy");
 		}
 		this.allowedToPlay = false;

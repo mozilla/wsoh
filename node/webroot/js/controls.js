@@ -12,7 +12,7 @@ $(document).ready(function(){
         audioPlaylist.playlistPrev()
     }
     now.receiveUpdateTime = function(data) {
-        console.debug(data);
+        audioPlaylist.playlistUpdateTime(data);
     }
     now.receiveUpdatePlaylist = function(data) {
         console.debug('playlist');
