@@ -135,11 +135,33 @@ everyone.now.play = function(){
 }
 
 everyone.now.nextSong = function(){
-    nowjs.getGroup(this.now.roomID).now.receiveNextSong()
+    util.log("next");
+    roomID = this.now.roomID;
+    redis_get("playlist:"+roomID, function(data) {
+        data = JSON.parse(data);
+        next = data.current + 1;
+        util.log("next . next = " + next);
+        if (next >= data.playlist.length) {
+            next = 0;
+        }
+        data.current = next;
+        set_playlist(roomID, JSON.stringify(data));
+    });
+    nowjs.getGroup(roomID).now.receiveNextSong()
 }
 
 everyone.now.previousSong = function(){
-    nowjs.getGroup(this.now.roomID).now.receivePreviousSong()
+    roomID = this.now.roomID;
+    redis_get("playlist:"+roomID, function(data) {
+        data = JSON.parse(data);
+        prev = data.current - 1;
+        if (prev < 0) {
+            prev = data.playlist.length;
+        }
+        data.current = prev;
+        set_playlist(roomID, JSON.stringify(data));
+    });
+    nowjs.getGroup(roomID).now.receivePreviousSong()
 }
 
 everyone.now.updateTime = function(seconds){
