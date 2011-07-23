@@ -205,7 +205,6 @@ Playlist.prototype = {
 	},
 	playlistPlay: function() {
 		if(this.renderjPlayer && $(this.cssSelector.interface).data("jPlayer") && $(this.cssSelector.interface).data("jPlayer").status.paused) {
-			console.log(this);
 			if($(this.cssSelector.interface).data("jPlayer")) {
 				$(this.cssSelector.interface).jPlayer("play");
 			}
@@ -216,8 +215,8 @@ Playlist.prototype = {
 	},
 	playlistPause: function () {
 		if(this.renderjPlayer && $(this.cssSelector.interface).data("jPlayer") && !$(this.cssSelector.interface).data("jPlayer").status.paused) {
-			if($(self.cssSelector.interface).data("jPlayer")) {
-				$(self.cssSelector.interface).jPlayer("pause");
+			if($(this.cssSelector.interface).data("jPlayer")) {
+				$(this.cssSelector.interface).jPlayer("pause");
 			}
 			$("#song-play-pause").addClass('paused');
 		} else {
