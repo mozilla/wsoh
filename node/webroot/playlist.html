@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Musique</title>
+		<link rel="stylesheet" href="/static/css/style.css" media="all">
+		<link href='http://fonts.googleapis.com/css?family=Rosario&v2' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<div id="song-header-wrapper">
+			<div id="song-header">
+				<div id="album-art">
+					<img src="http://static.a.gs-cdn.net/webincludes/images/default/album_250.png" height="150" id="song-album-art" />
+				</div>
+				<div id="song-information">
+					<h1 id="song-name"></h1> <h2>by <span id="song-artist"></span></h2><br />
+					<h3 id="song-album"></h3>
+					<div id="song-controls">
+						<div id="song-progress-outer-wrapper"><div class="time" id="song-so-far">0:00</div><div id="song-progress-inner-wrapper"><div id="song-progress-wrapper"><div id="song-progress-played" style="width: 0%;">&nbsp;</div></div></div><div class="time" id="song-duration">0:00</div></div>
+					</div>
+					<div id="song-under-controls">
+					    <input id="volume-slider" type="range"  min="0" max="100" style="margin-right: 275px;"/>
+						<div id="controls-wrapper"><a href="#" id="song-previous" class="jp-previous">&nbsp;</a><a href="#" id="song-play-pause" class="paused">&nbsp;</a><a href="#" id="song-next" class="jp-next">&nbsp;</a><a href="#" id="search-open" class="">&nbsp;</a></div>
+					</div>
+					<div id="song-player" style="display: none;"></div>
+				</div>
+			</div>
+		</div>
+		<div id="content-wrapper">
+			<div id="content">
+				<div id="song-list">
+					<div class="song-listing"><div class="song-listing-index"><span>&nbsp;</span></div><div class="song-listing-album-information"><div class="song-listing-album-information-song">No Songs</div></div></div>
+				</div>
+			</div>
+		</div>
+		<div id="search-box">
+			<div id="search-header">
+				<h1>Search</h1>
+				<input type="text" id="search-field" /><a href="#" id="search-cancel">Cancel</a>
+			</div>
+			<div id="search-results">&nbsp;
+			</div>
+		</div>
+		<script src="/static/lib/jquery.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="/static/lib/jquery.jplayer.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="/static/js/playlist.js"></script>
+		<script type="text/javascript" charset="utf-8" src="/static/js/search.js"></script>
+		<script type="text/javascript">
+			// lets do this shit
+			var audioPlaylist = new Playlist("song-player", [], {
+					ready: function() {
+						audioPlaylist.displayPlaylist();
+						audioPlaylist.playlistInit(false); // Parameter is a boolean for autoplay.
+					},
+					ended: function() {
+						audioPlaylist.playlistNext();
+					},
+					play: function() {
+					},
+					timeupdate: function(e) {
+						if(e.jPlayer && e.jPlayer.status) {
+							// $("#song-so-far").text(secondsToTime(e.jPlayer.status.currentTime));
+							// 							$("#song-duration").text(secondsToTime(e.jPlayer.status.duration));
+							// 							$("#song-progress-played").css({ 'width': e.jPlayer.status.currentPercentAbsolute + "%" });
+							// audioPlaylist.updateButtons();
+							now.updateTime({ sofar: secondsToTime(e.jPlayer.status.currentTime), duration: secondsToTime(e.jPlayer.status.duration), progress: e.jPlayer.status.currentPercentAbsolute + "%" });
+						}
+					},
+					error: function (e) {
+						alert("We're sorry, but Grooveshark is being cranky and won't let us play this song");
+						if(audioPlaylist.playlist.length > 1) {
+							audioPlaylist.playlistNext();
+						}
+					},
+					swfPath: "../js",
+					supplied: "oga, mp3"
+				});
+			continueUpdatingButtons();
+			
+		</script>
+		<script src="/nowjs/now.js"></script>
+        <script src="/static/lib/sammy.js"></script>
+        <script src="/static/js/main.js"></script>
+        <script src="/static/js/controls.js"></script>
+        <script src="/static/js/current-player.js"></script>
+	</body>
+</html>
